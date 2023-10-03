@@ -1,0 +1,40 @@
+import React from 'react'
+import Heder from '../shared/Heder'
+import Footer from '../shared/Footer'
+
+const Conatct = () => {
+    return (
+        <>
+            <Heder />
+            <div className ="site-section">
+                <div className ="container">
+                    <div className ="row block-9">
+                        <div className ="col-md-6 pr-md-5">
+                            <form action="#">
+                                <div className ="form-group">
+                                    <input type="text" className ="form-control px-3 py-3" placeholder="Your Name" />
+                                </div>
+                                <div className ="form-group">
+                                    <input type="text" className ="form-control px-3 py-3" placeholder="Your Email" />
+                                </div>
+                                <div className ="form-group">
+                                    <input type="text" className ="form-control px-3 py-3" placeholder="Subject" />
+                                </div>
+                                <div className ="form-group">
+                                    <textarea name="" id="" cols="30" rows="7" className ="form-control px-3 py-3" placeholder="Message"></textarea>
+                                </div>
+                                <div className ="form-group">
+                                    <input type="submit" value="Send Message" className ="btn btn-primary py-3 px-5" />
+                                </div>
+                            </form>
+                        </div>
+                        <div className ="col-md-6" id="map"></div>
+                    </div>
+                </div>
+            </div>
+            <Footer />
+        </>
+    )
+}
+
+export default Conatct
