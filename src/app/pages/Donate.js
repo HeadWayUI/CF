@@ -125,13 +125,13 @@ const Donate = () => {
                 </div>
             </div>
 
-            <div className="featured-section overlay-color-2" style={{ backgroundImage: "url('../assets/images/bg_2.jpg')" }}>
+            <div className="featured-section overlay-color-2" style={{ backgroundImage: "url('../assets/images/volunter.jpg')" }}>
 
                 <div className="container">
                     <div className="row">
 
                         <div className="col-md-6 mb-5 mb-md-0">
-                            <img src="../assets/images/bg_2.jpg" alt="Image placeholder" className="img-fluid" />
+                            <img src="../assets/images/volunter.jpg" alt="Image placeholder" className="img-fluid" />
                         </div>
 
                         <div className="col-md-6 pl-md-5">

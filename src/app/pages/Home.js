@@ -1,8 +1,25 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
+import 'popper.js';
+
+import "../../assets/css/style.css"
+import "../../assets/css/open-iconic-bootstrap.min.css"
+import "../../assets/css/animate.css"
+import "../../assets/css/owl.carousel.min.css"
+import "../../assets/css/owl.theme.default.min.css"
+import "../../assets/css/magnific-popup.css"
+import "../../assets/css/aos.css"
+import "../../assets/css/ionicons.min.css"
+import "../../assets/css/bootstrap-datepicker.css"
+import "../../assets/css/jquery.timepicker.css"
+import "../../assets/css/flaticon.css"
+import "../../assets/css/icomoon.css"
+import "../../assets/css/fancybox.min.css"
+import "../../assets/css/bootstrap.css"
+
 
 import img1 from "../../assets/images/banner-1.jpg"
 import img2 from "../../assets/images/banner-2.jpg"
@@ -39,7 +56,7 @@ const Home = () => {
         <>
             <nav className="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
                 <div className="container">
-                    <Link className="navbar-brand" to ="/">CareerFunds</Link>
+                    <Link className="navbar-brand" to ="/">Career Funds</Link>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="oi oi-menu"></span> Menu
                     </button>

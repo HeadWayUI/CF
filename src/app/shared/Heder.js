@@ -39,7 +39,7 @@ const Heder = () => {
         <>
             <nav className="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
                 <div className="container">
-                    <Link className="navbar-brand" to ="/">CareerFunds</Link>
+                    <Link className="navbar-brand" to ="/">Career Funds</Link>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="oi oi-menu"></span> Menu
                     </button>

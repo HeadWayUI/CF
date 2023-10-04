@@ -8,7 +8,6 @@ const Blog = () => {
         <Heder />
             <div className ="block-31" style={{position: "relative"}}>
                 <div className ="owl-carousel loop-block-31 ">
-                    <div className ="block-30 block-30-sm item" style={{ backgroundImage: "url('../assets/images/bg_1.jpg')" }} data-stellar-background-ratio="0.5">
                         <div className ="container">
                             <div className ="row align-items-center justify-content-center text-center">
                                 <div className ="col-md-7">
@@ -18,13 +17,9 @@ const Blog = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-
 
             <div className ="site-section bg-light">
                 <div className ="container">
-
-
                     <div className ="row">
                         <div className ="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
                             <div className ="post-entry">

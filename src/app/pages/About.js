@@ -6,9 +6,8 @@ const About = () => {
   return (
     <>
     <Heder />
-     <div className="block-31" style={{position: "relative"}}>
-    <div className="owl-carousel loop-block-31 ">
-      <div className="block-30 block-30-sm item" style={{ backgroundImage: "url('../assets/images/bg_2.jpg')" }} data-stellar-background-ratio="0.5">
+    <div className="block-31" style={{position: "relative"}}>
+  
         <div className="container">
           <div className="row align-items-center justify-content-center">
             <div className="col-md-7 text-center">
@@ -17,9 +16,7 @@ const About = () => {
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  
+
   <div className="site-section mb-5">
     <div className="container">
       <div className="row mb-5">
@@ -104,9 +101,9 @@ const About = () => {
     <div className="container">
       <div className="block-31 mb-5" style={{position: "relative"}}>
           <div className="owl-carousel loop-block-31">
-            <div className="block-30 no-overlay item" style={{ backgroundImage: "url('../assets/images/bg_2.jpg')" }}></div>
-            <div className="block-30 no-overlay item" style={{ backgroundImage: "url('../assets/images/bg_1.jpg')" }}></div>
-            <div className="block-30 no-overlay item" style={{ backgroundImage: "url('../assets/images/bg_3.jpg')" }}></div>
+            <div className="block-30 no-overlay item" style={{ backgroundImage: "url('../assets/images/banner-1.jpg')" }}></div>
+            <div className="block-30 no-overlay item" style={{ backgroundImage: "url('../assets/images/banner-3.jpg')" }}></div>
+            <div className="block-30 no-overlay item" style={{ backgroundImage: "url('../assets/images/banner-2.jpg')" }}></div>
           </div>
         </div>
     </div>

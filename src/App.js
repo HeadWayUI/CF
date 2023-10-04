@@ -6,30 +6,30 @@ import Gallery from './app/pages/Gallery';
 import Blog from './app/pages/Blog';
 import Conatct from './app/pages/Conatct';
 import Login from './app/pages/Login';
-import { useState } from "react";
+// import { useState } from "react";
 
-import Topbar from "./admin/scenes/global/Topbar";
-import Sidebar from "./admin/scenes/global/Sidebar";
-import Dashboard from "./admin/scenes/dashboard";
-import Team from "./admin/scenes/team";
-import Invoices from "./admin/scenes/invoices";
-import Contacts from "./admin/scenes/contacts";
-import Bar from "./admin/scenes/bar";
-import Form from "./admin/scenes/form";
-import Line from "./admin/scenes/line";
-import Pie from "./admin/scenes/pie";
-import FAQ from "./admin/scenes/faq";
-import Geography from "./admin/scenes/geography";
-import { CssBaseline, ThemeProvider } from "@mui/material";
-import { ColorModeContext, useMode } from "./theme";
-import Calendar from "./admin/scenes/calendar/calendar";
+// import Topbar from "./admin/scenes/global/Topbar";
+// import Sidebar from "./admin/scenes/global/Sidebar";
+// import Dashboard from "./admin/scenes/dashboard";
+// import Team from "./admin/scenes/team";
+// import Invoices from "./admin/scenes/invoices";
+// import Contacts from "./admin/scenes/contacts";
+// import Bar from "./admin/scenes/bar";
+// import Form from "./admin/scenes/form";
+// import Line from "./admin/scenes/line";
+// import Pie from "./admin/scenes/pie";
+// import FAQ from "./admin/scenes/faq";
+// import Geography from "./admin/scenes/geography";
+// import { CssBaseline, ThemeProvider } from "@mui/material";
+// import { ColorModeContext, useMode } from "./theme";
+// import Calendar from "./admin/scenes/calendar/calendar";
 
 
 
 
 function App() {
-  const [theme, colorMode] = useMode();
-  const [isSidebar, setIsSidebar] = useState(true);
+  // const [theme, colorMode] = useMode();
+  // const [isSidebar, setIsSidebar] = useState(true);
   return (
     <div>
       <Routes>
@@ -42,7 +42,7 @@ function App() {
         <Route path = '/login' element = {<Login />} />
       </Routes>
 
-      <ColorModeContext.Provider value={colorMode}>
+      {/* <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <div className="app">
@@ -65,7 +65,7 @@ function App() {
           </main>
         </div>
       </ThemeProvider>
-    </ColorModeContext.Provider>
+    </ColorModeContext.Provider> */}
     </div>
   );
 }
