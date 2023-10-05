@@ -6,8 +6,8 @@ const About = () => {
   return (
     <>
     <Heder />
+    
     <div className="block-31" style={{position: "relative"}}>
-  
         <div className="container">
           <div className="row align-items-center justify-content-center">
             <div className="col-md-7 text-center">

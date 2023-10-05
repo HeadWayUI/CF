@@ -64,12 +64,13 @@ const Home = () => {
                     <div className="collapse navbar-collapse" id="ftco-nav">
                         <ul className="navbar-nav ml-auto">
                             <li className="nav-item"><Link to ="/" className="nav-link">Home</Link></li>
-                            <li className="nav-item"><Link to ="/donate" className="nav-link">Doners</Link></li>
-                            <li className="nav-item"><Link to ="/contact" className="nav-link">Contact</Link></li>
-                            <li className="nav-item"><Link to ="/gallery" className="nav-link">Gallery</Link></li>
-                            <li className="nav-item"><Link to ="/blog" className="nav-link">Blog</Link></li>
                             <li className="nav-item"><Link to="/about" className="nav-link">About</Link></li>
+                            {/* <li className="nav-item"><Link to ="/donate" className="nav-link">Doners</Link></li> */}
+                            <li className="nav-item"><Link to ="/blog" className="nav-link">Blog</Link></li>
+                            <li className="nav-item"><Link to ="/gallery" className="nav-link">Gallery</Link></li>                
+                            <li className="nav-item"><Link to ="/contact" className="nav-link">Contact</Link></li>
                             <li className="nav-item"><Link to ="/login" className="nav-link">Login</Link></li>
+                            <li className="nav-item"><Link to ="/about" className="btn btn-primary">Know More</Link></li>
                         </ul>
                     </div>
                 </div>
@@ -112,14 +113,14 @@ const Home = () => {
                                 <span className="block-48-text-1">Served Over</span>
                                 <div className="block-48-counter ftco-number" data-number="1321901">0</div>
                                 <span className="block-48-text-1 mb-4 d-block">Children in 150 Countries</span>
-                                <p className="mb-0"><a href="#" className="btn btn-white px-3 py-2">View Our Program</a></p>
+                                <p className="mb-0"><Link to ="/blog" className="btn btn-white px-3 py-2">View Our Program</Link></p>
                             </div>
                         </div>
                         <div className="col-md-6 welcome-text">
                             <h2 className="display-4 mb-3">Who Are We?</h2>
                             <p className="lead">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
                             <p className="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. </p>
-                            <p className="mb-0"><a href="#" className="btn btn-primary px-3 py-2">Learn More</a></p>
+                            <p className="mb-0"><Link to ="/about" className="btn btn-primary px-3 py-2">Know More</Link></p>
                         </div>
                     </div>
                 </div>
@@ -176,7 +177,7 @@ const Home = () => {
                         <div className="col-md-8 text-center">
                             <h2>Latest Fundraisers</h2>
                             <p className="lead">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <p><a href="#" className="link-underline">View All Fundraisers</a></p>
+                            <p><Link to ="/allfundrisers" className="link-underline">View All Fundraisers</Link></p>
                         </div>
                     </div>
                 </div>
@@ -279,7 +280,7 @@ const Home = () => {
                         <div className="col-md-8 text-center">
                             <h2>Latest Donations</h2>
                             <p className="lead">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <p className="mb-5"><a href="#" className="link-underline">View All Donations</a></p>
+                            <p className="mb-5"><Link to ="/donate" className="link-underline">View All Donations</Link></p>
                         </div>
                     </div>
 
@@ -333,9 +334,10 @@ const Home = () => {
 {/* LATEST DONATION END */}
 
 {/* SUCCESS STORIES START */}
+       
             <div className="featured-section overlay-color-2" >
-
                 <div className="container">
+                <OwlCarousel className='owl-theme' {...options}>
                     <div className="row">
                         <div className="col-md-6">
                             <img src="../assets/images/success.jpg" alt="Image placeholder" className="img-fluid" />
@@ -348,11 +350,25 @@ const Home = () => {
 
                             <p><a href="#" className="btn btn-success btn-hover-white py-3 px-5">Read The Full Story</a></p>
                         </div>
-
                     </div>
-                </div>
 
+                    <div className="row">
+                        <div className="col-md-6">
+                            <img src="../assets/images/volunter.jpg" alt="Image placeholder" className="img-fluid" />
+                        </div>
+                        <div className="col-md-6 pl-md-5">
+                            <span className="featured-text d-block mb-3">Success Stories ......2</span>
+                            <h2>Water Is Life. We Successfuly Provide Clean Water in South East Asia</h2>
+                            <p className="mb-3">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                            <span className="fund-raised d-block mb-5">We have raised $100,000</span>
+
+                            <p><a href="#" className="btn btn-success btn-hover-white py-3 px-5">Read The Full Story</a></p>
+                        </div>
+                    </div>
+                    </OwlCarousel>
+                </div>
             </div>
+        
 {/* SUCCESS STORIES END */}
 
 {/* LATEST NEWS START */}

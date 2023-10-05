@@ -6,6 +6,7 @@ const Conatct = () => {
     return (
       <>
         <Heder />
+        
         <div class="block-31" style={{position: "relative"}}>
           <div class="owl-carousel loop-block-31 ">
               <div class="container">
