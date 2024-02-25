@@ -1,71 +1,89 @@
-import {Routes, Route } from 'react-router-dom'
-// import About from './app/pages/About';
-// import Home from './app/pages/Home'
-// import Donate from './app/pages/Donate';
-// import Gallery from './app/pages/Gallery';
-// import Blog from './app/pages/Blog';
-// import Conatct from './app/pages/Conatct';
-// import Login from './app/pages/Login';
+import { Routes, Route } from 'react-router-dom'
+import About from './app/pages/About';
+import Home from './app/pages/Home'
+import Donate from './app/pages/Donate';
+import Gallery from './app/pages/Gallery';
+import Blog from './app/pages/Blog';
+import Conatct from './app/pages/Conatct';
+import Login from './app/pages/login/Login'
+import Sidebar from './app/pages/sidebar/Sidebar'
+import Navbar from './admin/admincomponents/navbar/Navbar'
+import Signup from './app/pages/login/Signup';
+import { productInputs, userInputs } from "./formSource";
 
-import { useState } from "react";
-import Topbar from "./admin/scenes/global/Topbar";
-import Sidebar from "./admin/scenes/global/Sidebar";
-import Dashboard from "./admin/scenes/dashboard";
-import Team from "./admin/scenes/team";
-import Invoices from "./admin/scenes/invoices";
-import Contacts from "./admin/scenes/contacts";
-import Bar from "./admin/scenes/bar";
-import Form from "./admin/scenes/form";
-import Line from "./admin/scenes/line";
-import Pie from "./admin/scenes/pie";
-import FAQ from "./admin/scenes/faq";
-import Geography from "./admin/scenes/geography";
-import { CssBaseline, ThemeProvider } from "@mui/material";
-import { ColorModeContext, useMode } from "./theme";
-import Calendar from "./admin/scenes/calendar/calendar";
+import { useContext } from "react";
+import { DarkModeContext } from "./context/darkModeContext";
 
-
+import Sponsorpayments from './sponsor/sponsorpages/payments/Sponsorpayments'
+import Sponsorhome from './sponsor/sponsorpages/home/Sponsorhome';
+import Sponsorlist from './sponsor/sponsorpages/list/Sponsorlist';
+import Sponsornew from './sponsor/sponsorpages/new/Sponsornew';
+import Sponsorsingle from './sponsor/sponsorpages/single/Sponsorsingle';
+import Sponsorpiechart from "./sponsor/sponsorpages/pie/Sponsorpiechart";
+import Sponsorbarchart from "./sponsor/sponsorpages/bar/Sponsorbarchart";
+import Sponsorfunds from "./sponsor/sponsorpages/funds/Sponsorfunds";
+import Homee from "./admin/adminpages/home/Home";
+import React from "react";
+import List from "./admin/adminpages/list/List";
+import Single from "./admin/adminpages/single/Single";
+import New from "./admin/adminpages/new/New"
+import Allstudents from './app/pages/Allstudents';
+import Alltrainers from './app/pages/Alltrainers';
+import Alltechnology from './app/pages/Alltechnology';
+import Allclients from './app/pages/Allclients';
+import Allfunders from './app/pages/Allfunders';
+import Funds from './app/pages/Funds';
 
 
 function App() {
-  const [theme, colorMode] = useMode();
-  const [isSidebar, setIsSidebar] = useState(true);
+
   return (
     <div>
-      {/* <Routes>
-        <Route path = '/' element = {<Home />} />
-        <Route path = '/about' element = {<About />} />
-        <Route path = '/donate' element = {<Donate />} />
-        <Route path = '/gallery' element = {<Gallery />} />
-        <Route path = '/blog' element = {<Blog />} />
-        <Route path = '/contact' element = {<Conatct />} />
-        <Route path = '/login' element = {<Login />} />
-      </Routes> */}
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/donate' element={<Donate />} />
+        <Route path='/gallery' element={<Gallery />} />
+        <Route path='/blog' element={<Blog />} />
+        <Route path='/contact' element={<Conatct />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<Signup />} />
+        <Route path='/sidenav' element={<Sidebar />} />
+        <Route path='/nav' element={<Navbar />} />
+        <Route path='/allinterns' element={<Allstudents />} />
+        <Route path='/alltrainers' element={<Alltrainers />} />
+        <Route path='/alltechnology' element={<Alltechnology />} />
+        <Route path='/allclients' element={<Allclients />} />
+        <Route path='/alldonars' element={<Allfunders />} />
+        <Route path='/fund' element={<Funds />} />
+        <Route path="admin" element={<Homee />} />
 
-      <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <div className="app">
-          <Sidebar isSidebar={isSidebar} />
-          <main className="content">
-            <Topbar setIsSidebar={setIsSidebar} />
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/team" element={<Team />} />
-              <Route path="/contacts" element={<Contacts />} />
-              <Route path="/invoices" element={<Invoices />} />
-              <Route path="/form" element={<Form />} />
-              <Route path="/bar" element={<Bar />} />
-              <Route path="/pie" element={<Pie />} />
-              <Route path="/line" element={<Line />} />
-              <Route path="/faq" element={<FAQ />} />
-              <Route path="/calendar" element={<Calendar />} />
-              <Route path="/geography" element={<Geography />} />
-            </Routes>
-          </main>
-        </div>
-      </ThemeProvider>
-    </ColorModeContext.Provider>
+        <Route path="users">
+          <Route index element={<List />} />
+          <Route path=":userId" element={<Single />} />
+          <Route path="new" element={<New inputs={userInputs} title="Add New User" />}/>
+         
+        </Route>
+        <Route path="adminlearner">
+              <Route index element={<List />} />
+              <Route path=":productId" element={<Sponsorsingle />} />
+             
+            </Route>
+
+        <Route path="sponsoradmin">
+            <Route index element={<Sponsorhome />} />
+            <Route path="sponsoradmin" element={<Sponsorhome />} />
+          </Route>
+            <Route path="learner">
+              <Route index element={<Sponsorlist />} />
+              <Route path=":learnerId" element={<Sponsorsingle />} />
+            
+            </Route>
+            <Route path="sponsorpayments" element={<Sponsorpayments />}  />
+            <Route path="sponsorpie" element={<Sponsorpiechart />}  />
+            <Route path="sponsorbar" element={<Sponsorbarchart />}  />
+            <Route path="funds" element={<Sponsorfunds />}  />
+      </Routes>
     </div>
   );
 }

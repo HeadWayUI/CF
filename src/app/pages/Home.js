@@ -4,6 +4,7 @@ import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import 'popper.js';
+import { useState, useEffect } from 'react';
 
 import "../../assets/css/style.css"
 import "../../assets/css/open-iconic-bootstrap.min.css"
@@ -19,13 +20,146 @@ import "../../assets/css/flaticon.css"
 import "../../assets/css/icomoon.css"
 import "../../assets/css/fancybox.min.css"
 import "../../assets/css/bootstrap.css"
+import Footer from '../shared/Footer';
+import Heder from '../shared/Heder';
 
 
-import img1 from "../../assets/images/banner-1.jpg"
-import img2 from "../../assets/images/banner-2.jpg"
-import img3 from "../../assets/images/banner-3.jpg"
 
 const Home = () => {
+
+        const [donars, setDonars] = useState([]);
+        const [technology, setTechnology] = useState([]);
+        const [client, setClient] = useState([]);
+        const [students, setStudents] = useState([]);
+        const [trainers, setTrainers] = useState([]);
+        const [stories, setStories] = useState([]);
+        const [loading, setLoading] = useState(true);
+        const baseUrl = "http://ec2-13-51-102-167.eu-north-1.compute.amazonaws.com:9090";
+        const imgUrl = 'https://careerfund-images.s3.eu-north-1.amazonaws.com/images.jpeg';
+
+
+        // Donar api endpoint
+        useEffect(() => {
+            const fetchDonars = async () => {
+              try {
+                const response = await fetch(baseUrl + '/api/donors'); // Replace with your API endpoint
+                if (!response.ok) {
+                  throw new Error('Failed to fetch data');
+                }
+                const data = await response.json();
+                setDonars(data);
+              } catch (error) {
+                console.error('Error fetching user data:', error);
+              } finally {
+                setLoading(false);
+              }
+            };
+            fetchDonars();
+        }, []);
+
+        // Technology api endpoint
+
+        useEffect(() => {
+            const fetchTechnologies = async () => {
+              try {
+                const response = await fetch(baseUrl + '/api/technologies/all'); // Replace with your API endpoint
+                if (!response.ok) {
+                  throw new Error('Failed to fetch data');
+                }
+                const data = await response.json();
+                setTechnology(data);
+              } catch (error) {
+                console.error('Error fetching user data:', error);
+              } finally {
+                setLoading(false);
+              }
+            };
+            fetchTechnologies();
+        }, []);
+
+
+        // Clients api endpoint
+        useEffect(() => {
+            const fetchClients = async () => {
+              try {
+                const response = await fetch(baseUrl + '/clients/all'); // Replace with your API endpoint
+                if (!response.ok) {
+                  throw new Error('Failed to fetch data');
+                }
+                const data = await response.json();
+                setClient(data);
+              } catch (error) {
+                console.error('Error fetching user data:', error);
+              } finally {
+                setLoading(false);
+              }
+            };
+            fetchClients();
+        }, []);
+        
+        // Success stories endpoint
+        useEffect(() => {
+            const fetchStories = async () => {
+              try {
+                const response = await fetch(baseUrl + '/api/stories'); // Replace with your API endpoint
+                if (!response.ok) {
+                  throw new Error('Failed to fetch data');
+                }
+                const data = await response.json();
+                setStories(data);
+              } catch (error) {
+                console.error('Error fetching user data:', error);
+              } finally {
+                setLoading(false);
+              }
+            };
+            fetchStories();
+        }, []);
+
+        // students api endpoints 
+        useEffect(() => {
+            const fetchStudents = async () => {
+              try {
+                const response = await fetch(baseUrl + '/api/students'); // Replace with your API endpoint
+                if (!response.ok) {
+                  throw new Error('Failed to fetch data');
+                }
+                const data = await response.json();
+                setStudents(data);
+              } catch (error) {
+                console.error('Error fetching user data:', error);
+              } finally {
+                setLoading(false);
+              }
+            };
+            fetchStudents();
+        }, []);
+
+        // Trainers api endpoints 
+
+        useEffect(() => {
+            const fetchTrainers = async () => {
+              try {
+                const response = await fetch(baseUrl + '/api/trainers'); // Replace with your API endpoint
+                if (!response.ok) {
+                  throw new Error('Failed to fetch data');
+                }
+                const data = await response.json();
+                setTrainers(data);
+              } catch (error) {
+                console.error('Error fetching user data:', error);
+              } finally {
+                setLoading(false);
+              }
+            };
+            fetchTrainers();
+        }, []);
+
+        const contact = (e)=>{
+            e.preventDefault();
+        }
+
+            
     const options = {
         item: 1,
         loop:true,
@@ -52,58 +186,11 @@ const Home = () => {
             },
     },
 };
+
+
     return (
         <>
-            <nav className="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-                <div className="container">
-                    <Link className="navbar-brand" to ="/">Career Funds</Link>
-                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="oi oi-menu"></span> Menu
-                    </button>
-
-                    <div className="collapse navbar-collapse" id="ftco-nav">
-                        <ul className="navbar-nav ml-auto">
-                            <li className="nav-item"><Link to ="/" className="nav-link">Home</Link></li>
-                            <li className="nav-item"><Link to="/about" className="nav-link">About</Link></li>
-                            {/* <li className="nav-item"><Link to ="/donate" className="nav-link">Doners</Link></li> */}
-                            <li className="nav-item"><Link to ="/blog" className="nav-link">Blog</Link></li>
-                            <li className="nav-item"><Link to ="/gallery" className="nav-link">Gallery</Link></li>                
-                            <li className="nav-item"><Link to ="/contact" className="nav-link">Contact</Link></li>
-                            <li className="nav-item"><Link to ="/login" className="nav-link">Login</Link></li>
-                            <li className="nav-item"><Link to ="/about" className="btn btn-primary">Know More</Link></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-
-            {/* <div className="block-31" style={{ position: "relative" }}>
-                <div className="owl-carousel loop-block-31 ">
-                    <div className="block-30 block-30-sm item" style={{ backgroundImage: "url('../assets/images/bg_1.jpg')" }} data-stellar-background-ratio="0.5">
-                        <img src="../assets/images/img_1.jpg" alt="" className="img-fluid" />
-                        <div className="container">
-                            <div className="row align-items-center justify-content-center text-center">
-                                <div className="col-md-7">
-                                    <h2 className="heading mb-5">Free Website Template for Charity Websites.</h2>
-                                    <p style={{ display: "inline-block" }}><a href="https://vimeo.com/channels/staffpicks/93951774" data-fancybox className="ftco-play-video d-flex"><span className="play-icon-wrap align-self-center mr-4"><span className="ion-ios-play"></span></span> <span className="align-self-center">Watch Video</span></a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> */}
-
-            <OwlCarousel className='owl-theme' {...options}>
-                <div class='item'>
-                    <h4 style={{height:"700px"}}><img src={img1} alt='bg image-01' /></h4>
-                </div>
-                <div class='item'>
-                    <h4 style={{height:"700px"}}><img src={img2} alt='bg image-01' /></h4>
-                </div>
-                <div class='item'>
-                    <h4 style={{height:"700px"}}><img src={img3} alt='bg image-01' /></h4>
-                </div>
-            </OwlCarousel>
-
+        <Heder/>
             {/* WHO ARE WE START */}
             <div className="site-section section-counter">
                 <div className="container">
@@ -111,7 +198,7 @@ const Home = () => {
                         <div className="col-md-6 pr-5">
                             <div className="block-48">
                                 <span className="block-48-text-1">Served Over</span>
-                                <div className="block-48-counter ftco-number" data-number="1321901">0</div>
+                                <div className="block-48-counter ftco-number" data-number="13">0</div>
                                 <span className="block-48-text-1 mb-4 d-block">Children in 150 Countries</span>
                                 <p className="mb-0"><Link to ="/blog" className="btn btn-white px-3 py-2">View Our Program</Link></p>
                             </div>
@@ -169,165 +256,157 @@ const Home = () => {
                 </div>
             </div>
   {/* OUR MISSION END  */}
-  
-  {/* LATEST FUND RAISERS START  */}
-            <div className="site-section fund-raisers bg-light">
+
+  {/* Students start  */}
+<div className="site-section fund-raisers">
                 <div className="container">
                     <div className="row mb-3 justify-content-center">
                         <div className="col-md-8 text-center">
-                            <h2>Latest Fundraisers</h2>
+                            <h2>On-Going Interns</h2>
                             <p className="lead">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <p><Link to ="/allfundrisers" className="link-underline">View All Fundraisers</Link></p>
+                            <p className="mb-5"><Link to ="/allinterns" className="link-underline">View All Interns</Link></p>
+                        </div>
+                    </div>
+                    <div className="row">
+                    {students.map((student) => (
+                        <div className="col-md-6 col-lg-3 mb-5">
+                            <div className="person-donate text-center">
+                                <img src={student.image} alt="Image placeholder" className="img-fluid" />
+                                <div className="donate-info">
+                                    <h2>{student.firstName} {student.lastName}</h2>
+                                    <span className="time d-block mb-3">{student.course}</span>
+                                    <p>{student.description}</p>
+                                </div>
+                            </div>
+                        </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+{/* students end  */}
+
+{/* Trainers Start  */}
+<div className="site-section fund-raisers bg-light">
+                <div className="container">
+                    <div className="row mb-3 justify-content-center">
+                        <div className="col-md-8 text-center">
+                            <h2>Our Trainers</h2>
+                            <p className="lead">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <p className="mb-5"><Link to ="/alltrainers" className="link-underline">View All Trainers</Link></p>
+                        </div>
+                    </div>
+                    <div className="row">
+                    {trainers.map((trainer) => (
+                        <div className="col-md-6 col-lg-3 mb-5">
+                            <div className="person-donate text-center">
+                                <img src={trainer.image} alt="Image placeholder" className="img-fluid" />
+                                <div className="donate-info">
+                                    <h2>{trainer.firstName} {trainer.lastName}</h2>
+                                    <span className="time d-block mb-3">{trainer.course}</span>
+                                    <p>Certified In Java</p>
+                                </div>
+                            </div>
+                        </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+{/* Trainers End  */}
+
+  {/* Technologies Start */}
+  <div className="site-section fund-raisers bg-light">
+                <div className="container">
+                    <div className="row mb-3 justify-content-center">
+                        <div className="col-md-8 text-center">
+                            <h2>Technologies</h2>
+                            <p className="lead">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <p><Link to ="/alltechnology" className="link-underline">View All Technologies</Link></p>
                         </div>
                     </div>
                 </div>
-
                 <div className="col-md-12 block-11">
                  <div className='container'>
-                    <OwlCarousel className='owl-theme'>   
+                    <OwlCarousel className='owl-theme'> 
+                    {technology.map((technology) => (  
                         <div className="card fundraise-item" style={{margin:"5px"}}>
-                            <a href="#"><img className="card-img-top" src="../assets/images/img_1.jpg" alt="Image placeholder" /></a>
-                            <div className="card-body">
-                                <h3 className="card-title"><a href="#">Water Is Life. Clean Water In Urban Area</a></h3>
-                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <span className="donation-time mb-3 d-block">Last donation 1w ago</span>
-                                <div className="progress custom-progress-success">
-                                    <div className="progress-bar bg-primary" role="progressbar" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span className="fund-raised d-block">$12,000 raised of $30,000</span>
+                            <a href="#"><img className="card-img-top" src={technology.image} alt="Image placeholder" /></a>
+                            
+                            <div className="card-body"> 
+                                    <h3 className="card-title"><a href="#">{technology.techTitle}</a></h3>
+                                    <p className="card-text">{technology.description}</p>
+                                    <span className="donation-time mb-3 d-block">About Certification</span>
+                                    <span className="fund-raised d-block">{technology.certification}</span>                            
                             </div>
+                            
                         </div>
-
-
-                        <div className="card fundraise-item" style={{margin:"5px"}}>
-                            <a href="#"><img class="card-img-top" src="../assets/images/img_7.jpg" alt="Image placeholder" /></a>
-                            <div className="card-body">
-                                <h3 className="card-title"><a href="#">Need Shelter for Children in Africa</a></h3>
-                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <span className="donation-time mb-3 d-block">Last donation 1w ago</span>
-                                <div className="progress custom-progress-success">
-                                    <div className="progress-bar bg-primary" role="progressbar" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span className="fund-raised d-block">$12,000 raised of $30,000</span>
+                        ))}
+                        </OwlCarousel>
+                    </div>
+                    </div>
+                </div>
+  {/* Technologies End */}
+  
+  {/* LATEST CLIENT START  */}
+            <div className="site-section fund-raisers ">
+                <div className="container">
+                    <div className="row mb-3 justify-content-center">
+                        <div className="col-md-8 text-center">
+                            <h2>Clients</h2>
+                            <p className="lead">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <p><Link to ="/allclients" className="link-underline">View All Clients</Link></p>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-md-12 block-11">
+                 <div className='container'>
+                    <OwlCarousel className='owl-theme'> 
+                    {client.map((client) => (  
+                        <div className="card fundraise-item" style={{margin:"5px"}} key={client.id}>
+                            <a href="#"><img className="card-img-top" src={client.image} alt="Image placeholder" /></a>
+                            
+                            <div className="card-body"> 
+                                    <h3 className="card-title"><a href="#">{client.name}</a></h3>
+                                    <p className="card-text">{client.description}</p>
+                                    {/* <span className="donation-time mb-3 d-block">Last donation 1w ago</span>
+                                    <div className="progress custom-progress-success">
+                                        <div className="progress-bar bg-primary" role="progressbar" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <span className="fund-raised d-block">$12,000 raised of $30,000</span>                             */}
                             </div>
+                            
                         </div>
-
-                        <div className="card fundraise-item" style={{margin:"5px"}}>
-                            <a href="#"><img class="card-img-top" src="../assets/images/img_3.jpg" alt="Image placeholder" /></a>
-                            <div className="card-body">
-                                <h3 className="card-title"><a href="#">Children Needs Education</a></h3>
-                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <span className="donation-time mb-3 d-block">Last donation 1w ago</span>
-                                <div className="progress custom-progress-success">
-                                    <div className="progress-bar bg-primary" role="progressbar" style={{ width: "28%" }} aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span className="fund-raised d-block">$12,000 raised of $30,000</span>
-                            </div>
-                        </div>
-
-
-                        <div className="card fundraise-item" style={{margin:"5px"}}>
-                            <a href="#"><img class="card-img-top" src="../assets/images/img_4.jpg" alt="Image placeholder" /></a>
-                            <div className="card-body">
-                                <h3 className="card-title"><a href="#">Refugees Needs Food</a></h3>
-                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <span className="donation-time mb-3 d-block">Last donation 1w ago</span>
-                                <div className="progress custom-progress-success">
-                                    <div className="progress-bar bg-primary" role="progressbar" style={{ width: "28%" }} aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span className="fund-raised d-block">$12,000 raised of $30,000</span>
-                            </div>
-                        </div>
-
-
-                        <div className="card fundraise-item" style={{margin:"5px"}}>
-                            <a href="#"><img class="card-img-top" src="../assets/images/img_6.jpg" alt="Image placeholder" /></a>
-                            <div className="card-body">
-                                <h3 className="card-title"><a href="#">Voluteer </a></h3>
-                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <span className="donation-time mb-3 d-block">Last donation 1w ago</span>
-                                <div className="progress custom-progress-success">
-                                    <div className="progress-bar bg-primary" role="progressbar" style={{ width: "28%" }} aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span className="fund-raised d-block">$12,000 raised of $30,000</span>
-                            </div>
-                        </div>
-
-                        <div className="card fundraise-item" style={{margin:"5px"}} >
-                            <a href="#"><img class="card-img-top" src="../assets/images/img_3.jpg" alt="Image placeholder" /></a>
-                            <div className="card-body">
-                                <h3 className="card-title"><a href="#">Children Needs Food</a></h3>
-                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <span className="donation-time mb-3 d-block">Last donation 1w ago</span>
-                                <div className="progress custom-progress-success">
-                                    <div className="progress-bar bg-primary" role="progressbar" style={{ width: "28%" }} aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span className="fund-raised d-block">$12,000 raised of $30,000</span>
-                            </div>
-                        </div>
+                        ))}
                         </OwlCarousel>
                     </div>
                     </div>
                 </div>
             
- {/* LATEST FUND RAISERS END  */}
+ {/* LATEST CLIENT END  */}
 
  {/* LATEST DONATION START */}
 
-            <div className="site-section fund-raisers">
+            <div className="site-section fund-raisers bg-light">
                 <div className="container">
                     <div className="row mb-3 justify-content-center">
                         <div className="col-md-8 text-center">
-                            <h2>Latest Donations</h2>
+                            <h2>Latest Funders</h2>
                             <p className="lead">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <p className="mb-5"><Link to ="/donate" className="link-underline">View All Donations</Link></p>
+                            <p className="mb-5"><Link to ="/alldonars" className="link-underline">View All Funders</Link></p>
                         </div>
                     </div>
-
                     <div className="row">
+                    {donars.map((donar) => (
                         <div className="col-md-6 col-lg-3 mb-5">
                             <div className="person-donate text-center">
-                                <img src="../assets/images/person_1.jpg" alt="Image placeholder" className="img-fluid" />
+                                <img src={imgUrl} alt="Image placeholder" className="img-fluid" />
                                 <div className="donate-info">
-                                    <h2>Jorge Smith</h2>
-                                    <span className="time d-block mb-3">Donated Just now</span>
-                                    <p>Donated <span className="text-success">$252</span> <br /> <em>for</em> <a href="#" className="link-underline fundraise-item">Water Is Life. Clean Water In Urban Area</a></p>
+                                    <h2>{donar.firstName} {donar.lastName}</h2>
+                                    <span className="time d-block mb-3">{donar.emailAddress}</span>
+                                    <p>Occupation</p>
                                 </div>
                             </div>
                         </div>
-
-                        <div className="col-md-6 col-lg-3 mb-5">
-                            <div className="person-donate text-center">
-                                <img src="../assets/images/person_2.jpg" alt="Image placeholder" className="img-fluid" />
-                                <div className="donate-info">
-                                    <h2>Christine Charles</h2>
-                                    <span className="time d-block mb-3">Donated 1 hour ago</span>
-                                    <p>Donated <span className="text-success">$400</span> <br /> <em>for</em> <a href="#" className="link-underline fundraise-item">Children Needs Education</a></p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="col-md-6 col-lg-3 mb-5">
-                            <div className="person-donate text-center">
-                                <img src="../assets/images/person_3.jpg" alt="Image placeholder" className="img-fluid" />
-                                <div className="donate-info">
-                                    <h2>Albert Sluyter</h2>
-                                    <span className="time d-block mb-3">Donated 4 hours ago</span>
-                                    <p>Donated <span className="text-success">$1,200</span> <br /> <em>for</em> <a href="#" className="link-underline fundraise-item">Need Shelter for Children in Africa</a></p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="col-md-6 col-lg-3 mb-5">
-                            <div className="person-donate text-center">
-                                <img src="../assets/images/person_4.jpg" alt="Image placeholder" className="img-fluid" />
-                                <div className="donate-info">
-                                    <h2>Andrew Holloway</h2>
-                                    <span className="time d-block mb-3">Donated 9 hours ago</span>
-                                    <p>Donated <span className="text-success">$100</span> <br /> <em>for</em> <a href="#" className="link-underline fundraise-item">Water Is Life. Clean Water In Urban Area</a></p>
-                                </div>
-                            </div>
-                        </div>
+                        ))}
                     </div>
                 </div>
             </div>
@@ -338,33 +417,21 @@ const Home = () => {
             <div className="featured-section overlay-color-2" >
                 <div className="container">
                 <OwlCarousel className='owl-theme' {...options}>
-                    <div className="row">
+                {stories.map((storie) => (
+                    <div className="row" key={storie.ssId}>
                         <div className="col-md-6">
-                            <img src="../assets/images/success.jpg" alt="Image placeholder" className="img-fluid" />
+                            <img src={storie.image} alt="Image placeholder" className="img-fluid" />
                         </div>
                         <div className="col-md-6 pl-md-5">
-                            <span className="featured-text d-block mb-3">Success Stories</span>
-                            <h2>Water Is Life. We Successfuly Provide Clean Water in South East Asia</h2>
-                            <p className="mb-3">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                            <span className="featured-text d-block mb-3">{storie.title}</span>
+                            <h2>{}</h2>
+                            <p className="mb-3">{storie.description}</p>
                             <span className="fund-raised d-block mb-5">We have raised $100,000</span>
 
-                            <p><a href="#" className="btn btn-success btn-hover-white py-3 px-5">Read The Full Story</a></p>
-                        </div>
+                            {/* <p><a href="#" className="btn btn-success btn-hover-white py-3 px-5">Read The Full Story</a></p> */}
+                        </div>   
                     </div>
-
-                    <div className="row">
-                        <div className="col-md-6">
-                            <img src="../assets/images/volunter.jpg" alt="Image placeholder" className="img-fluid" />
-                        </div>
-                        <div className="col-md-6 pl-md-5">
-                            <span className="featured-text d-block mb-3">Success Stories ......2</span>
-                            <h2>Water Is Life. We Successfuly Provide Clean Water in South East Asia</h2>
-                            <p className="mb-3">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                            <span className="fund-raised d-block mb-5">We have raised $100,000</span>
-
-                            <p><a href="#" className="btn btn-success btn-hover-white py-3 px-5">Read The Full Story</a></p>
-                        </div>
-                    </div>
+                      ))}
                     </OwlCarousel>
                 </div>
             </div>
@@ -421,32 +488,32 @@ const Home = () => {
 
 {/* CONTACT-US START */}
             <div className="featured-section overlay-color-2">
-
                 <div className="container">
                     <div className="row">
-
                         <div className="col-md-6 mb-5 mb-md-0">
                             <img src="../assets/images/volunter.jpg" alt="Image placeholder" className="img-fluid" />
                         </div>
-
                         <div className="col-md-6 pl-md-5">
-
                             <div className="form-volunteer">
-
-                                <h2>Be A Volunteer Today</h2>
-                                <form action="#" method="post">
+                                <h2>Be In Touch .. !</h2>
+                                <form action="#" method="post" >
+                          
+                                {/* {formError && <p className="error">{formError}</p>} */}
                                     <div className="form-group">
                                         <label htmlFor="name">Name</label>
-                                        <input type="text" className="form-control py-2" id="name" placeholder="Enter your name" />
+                                        <input type="text"  name="firstName" className="form-control py-2" id="name" placeholder="Enter your name" />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="email">Email</label>
-                                        <input type="text" className="form-control py-2" id="email" placeholder="Enter your email" />
+                                        <input type="email"  name='emailAddress' className="form-control py-2" id="email" placeholder="Enter your email" />
                                     </div>
                                     <div className="form-group">
-                                        <label htmlFor="v_message">Email</label>
-                                        <textarea name="v_message" id="" cols="30" rows="3" className="form-control py-2" placeholder="Write your message"></textarea>
-                                        <input type="text" className="form-control py-2" id="email" />
+                                        <label htmlFor="phone">Phone</label>
+                                        <input type="number" name='contactNumber' className="form-control py-2" id="email" placeholder="Enter your phoneNumber" />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="v_message">Message</label>
+                                        <textarea name="description"   cols="30" rows="2" className="form-control py-2" placeholder="Write your message"></textarea>
                                     </div>
                                     <div className="form-group">
                                         <input type="submit" className="btn btn-white px-5 py-2" value="Send" />
@@ -454,96 +521,14 @@ const Home = () => {
                                 </form>
                             </div>
                         </div>
-
                     </div>
                 </div>
-
             </div>
 {/* CONTACT-US END */}
 
-{/* FOOTER START */}
-            <footer className="footer">
-                <div className="container">
-                    <div className="row mb-5">
-                        <div className="col-md-6 col-lg-4">
-                            <h3 className="heading-section">About Us</h3>
-                            <p className="lead">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-                            <p className="mb-5">Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                            <p><a href="#" className="link-underline">Read  More</a></p>
-                        </div>
-                        <div className="col-md-6 col-lg-4">
-                            <h3 className="heading-section">Recent Blog</h3>
-                            <div className="block-21 d-flex mb-4">
-                                <figure className="mr-3">
-                                    <img src="../assets/images/img_1.jpg" alt="" className="img-fluid" />
-                                </figure>
-                                <div className="text">
-                                    <h3 className="heading"><a href="#">Water Is Life. Clean Water In Urban Area</a></h3>
-                                    <div className="meta">
-                                        <div><a href="#"><span className="icon-calendar"></span> July 29, 2018</a></div>
-                                        <div><a href="#"><span className="icon-person"></span> Admin</a></div>
-                                        <div><a href="#"><span className="icon-chat"></span> 19</a></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="block-21 d-flex mb-4">
-                                <figure className="mr-3">
-                                    <img src="../assets/images/img_2.jpg" alt="" className="img-fluid" />
-                                </figure>
-                                <div className="text">
-                                    <h3 className="heading"><a href="#">Life Is Short So Be Kind</a></h3>
-                                    <div className="meta">
-                                        <div><a href="#"><span className="icon-calendar"></span> July 29, 2018</a></div>
-                                        <div><a href="#"><span className="icon-person"></span> Admin</a></div>
-                                        <div><a href="#"><span className="icon-chat"></span> 19</a></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="block-21 d-flex mb-4">
-                                <figure className="mr-3">
-                                    <img src="../assets/images/img_4.jpg" alt="" className="img-fluid" />
-                                </figure>
-                                <div className="text">
-                                    <h3 className="heading"><a href="#">Unfortunate Children Need Your Love</a></h3>
-                                    <div className="meta">
-                                        <div><a href="#"><span className="icon-calendar"></span> July 29, 2018</a></div>
-                                        <div><a href="#"><span className="icon-person"></span> Admin</a></div>
-                                        <div><a href="#"><span className="icon-chat"></span> 19</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-6 col-lg-4">
-                            <div className="block-23">
-                                <h3 className="heading-section">Get Connected</h3>
-                                <ul>
-                                    <li><span className="icon icon-map-marker"></span><span className="text">Ragini Residency 3 - D , Sriram Nagar, Kondapur, Hyderabad, India</span></li>
-                                    <li><a href="#"><span className="icon icon-phone"></span><span className="text">+91 9898989898</span></a></li>
-                                    <li><a href="#"><span className="icon icon-envelope"></span><span className="text">careerfundsinfo@gmail.com.com</span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <div className="row pt-5">
-                        <div className="col-md-12 text-center">
-
-                            <p>
-
-                                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i className="ion-ios-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >SK@HDS</a>
-
-                            </p>
-
-                        </div>
-                    </div>
-                </div>
-            </footer>
-            {/* FOOTER END */}
+<Footer/>
         </>
     )
 }
 
-export default Home
+export default Home;

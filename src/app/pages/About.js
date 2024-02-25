@@ -96,58 +96,6 @@ const About = () => {
 
     </div>
   </div>
-
-  <div className="site-section">
-    <div className="container">
-      <div className="block-31 mb-5" style={{position: "relative"}}>
-          <div className="owl-carousel loop-block-31">
-            <div className="block-30 no-overlay item" style={{ backgroundImage: "url('../assets/images/banner-1.jpg')" }}></div>
-            <div className="block-30 no-overlay item" style={{ backgroundImage: "url('../assets/images/banner-3.jpg')" }}></div>
-            <div className="block-30 no-overlay item" style={{ backgroundImage: "url('../assets/images/banner-2.jpg')" }}></div>
-          </div>
-        </div>
-    </div>
-  </div>
-
-  <div className="site-section border-top">
-    <div className="container">
-      <div className="row">
-
-        <div className="col-md-4">
-          <div className="media block-6">
-            <div className="icon"><span className="ion-ios-bulb"></span></div>
-            <div className="media-body">
-              <h3 className="heading">Our Mission</h3>
-              <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-              <p><a href="#" className="link-underline">Learn More</a></p>
-            </div>
-          </div>     
-        </div>
-        <div className="col-md-4">
-          <div className="media block-6">
-            <div className="icon"><span className="ion-ios-cash"></span></div>
-            <div className="media-body">
-              <h3 className="heading">Make Donations</h3>
-              <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-              <p><a href="#" className="link-underline">Learn More</a></p>
-            </div>
-          </div>  
-        </div>
-
-        <div className="col-md-4">
-          <div className="media block-6">
-            <div className="icon"><span className="ion-ios-contacts"></span></div>
-            <div className="media-body">
-              <h3 className="heading">We Need Volunteers</h3>
-              <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-              <p><a href="#" className="link-underline">Learn More</a></p>
-            </div>
-          </div> 
-        </div>
-
-      </div>
-    </div>
-  </div> 
   <Footer />
     </>
   )
