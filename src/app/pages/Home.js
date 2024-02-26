@@ -205,7 +205,7 @@ const Home = () => {
                         </div>
                         <div className="col-md-6 welcome-text">
                             <h2 className="display-4 mb-3">Who Are We?</h2>
-                            <p className="lead">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                            <p className="lead">Far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
                             <p className="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. </p>
                             <p className="mb-0"><Link to ="/about" className="btn btn-primary px-3 py-2">Know More</Link></p>
                         </div>
