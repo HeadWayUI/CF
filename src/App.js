@@ -33,6 +33,8 @@ import Alltechnology from './app/pages/Alltechnology';
 import Allclients from './app/pages/Allclients';
 import Allfunders from './app/pages/Allfunders';
 import Funds from './app/pages/Funds';
+import Pie from './admin/adminpages/pie/Adminpie';
+import Bar from './admin/adminpages/bar/Adminbar';
 
 
 function App() {
@@ -56,20 +58,23 @@ function App() {
         <Route path='/allclients' element={<Allclients />} />
         <Route path='/alldonars' element={<Allfunders />} />
         <Route path='/fund' element={<Funds />} />
+        
+        {/* admin routes */}
         <Route path="admin" element={<Homee />} />
-
         <Route path="users">
           <Route index element={<List />} />
           <Route path=":userId" element={<Single />} />
-          <Route path="new" element={<New inputs={userInputs} title="Add New User" />}/>
-         
+          <Route path="new" element={<New inputs={userInputs} title="Add New User" />}/>   
         </Route>
         <Route path="adminlearner">
               <Route index element={<List />} />
-              <Route path=":productId" element={<Sponsorsingle />} />
-             
-            </Route>
+              <Route path=":productId" element={<Sponsorsingle />} />    
+        </Route>
+        <Route path='pie' element={<Pie />} />
+        <Route path='bar' element={<Bar />} />
 
+
+        {/* sponsoradmin routes */}
         <Route path="sponsoradmin">
             <Route index element={<Sponsorhome />} />
             <Route path="sponsoradmin" element={<Sponsorhome />} />
@@ -77,7 +82,6 @@ function App() {
             <Route path="learner">
               <Route index element={<Sponsorlist />} />
               <Route path=":learnerId" element={<Sponsorsingle />} />
-            
             </Route>
             <Route path="sponsorpayments" element={<Sponsorpayments />}  />
             <Route path="sponsorpie" element={<Sponsorpiechart />}  />

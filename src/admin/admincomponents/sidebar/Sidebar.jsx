@@ -27,12 +27,15 @@ const Sidebar = () => {
       </div>
       <hr />
       <div className="center">
+        
         <ul>
           <p className="title">MAIN</p>
+          <Link to="/admin" style={{ textDecoration: "none" }}>
           <li>
             <DashboardIcon className="icon" />
             <span>Dashboard</span>
           </li>
+          </Link>
           <p className="title">LISTS</p>
           <Link to="/users" style={{ textDecoration: "none" }}>
             <li>
@@ -77,18 +80,18 @@ const Sidebar = () => {
             <span>Settings</span>
           </li> */}
           <p className="title">Revenue Chart View</p>
+          <Link to="/pie" style={{ textDecoration: "none" }}>
           <li>
             <AccountCircleOutlinedIcon className="icon" />
             <span>Pie</span>
           </li>
+          </Link>
+          <Link to="/bar" style={{ textDecoration: "none" }}>
           <li>
             <AccountCircleOutlinedIcon className="icon" />
             <span>Bar</span>
           </li>
-          <li>
-            <AccountCircleOutlinedIcon className="icon" />
-            <span>List</span>
-          </li>
+          </Link>
           <p className="title">USER</p>
           <li>
             <AccountCircleOutlinedIcon className="icon" />
@@ -99,16 +102,6 @@ const Sidebar = () => {
             <span>Logout</span>
           </li>
         </ul>
-      </div>
-      <div className="bottom">
-        <div
-          className="colorOption"
-          onClick={() => dispatch({ type: "LIGHT" })}
-        ></div>
-        <div
-          className="colorOption"
-          onClick={() => dispatch({ type: "DARK" })}
-        ></div>
       </div>
     </div>
   );

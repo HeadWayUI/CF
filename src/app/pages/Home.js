@@ -6,7 +6,7 @@ import 'owl.carousel/dist/assets/owl.theme.default.css';
 import 'popper.js';
 import { useState, useEffect } from 'react';
 
-import "../../assets/css/style.css"
+import "../../assets/css/style.css";
 import "../../assets/css/open-iconic-bootstrap.min.css"
 import "../../assets/css/animate.css"
 import "../../assets/css/owl.carousel.min.css"
