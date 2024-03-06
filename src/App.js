@@ -11,13 +11,13 @@ import Navbar from './admin/admincomponents/navbar/Navbar'
 import Signup from './app/pages/login/Signup';
 import { productInputs, userInputs } from "./formSource";
 
-import { useContext } from "react";
-import { DarkModeContext } from "./context/darkModeContext";
+// import { useContext } from "react";
+// import { DarkModeContext } from "./context/darkModeContext";
 
 import Sponsorpayments from './sponsor/sponsorpages/payments/Sponsorpayments'
 import Sponsorhome from './sponsor/sponsorpages/home/Sponsorhome';
 import Sponsorlist from './sponsor/sponsorpages/list/Sponsorlist';
-import Sponsornew from './sponsor/sponsorpages/new/Sponsornew';
+// import Sponsornew from './sponsor/sponsorpages/new/Sponsornew';
 import Sponsorsingle from './sponsor/sponsorpages/single/Sponsorsingle';
 import Sponsorpiechart from "./sponsor/sponsorpages/pie/Sponsorpiechart";
 import Sponsorbarchart from "./sponsor/sponsorpages/bar/Sponsorbarchart";
@@ -33,8 +33,10 @@ import Alltechnology from './app/pages/Alltechnology';
 import Allclients from './app/pages/Allclients';
 import Allfunders from './app/pages/Allfunders';
 import Funds from './app/pages/Funds';
-import Pie from './admin/adminpages/pie/Adminpie';
-import Bar from './admin/adminpages/bar/Adminbar';
+// import Pie from './admin/adminpages/pie/Adminpie';
+// import Bar from './admin/adminpages/bar/Adminbar';
+import Adminbar from './admin/adminpages/bar/Adminbar';
+import Adminpie from './admin/adminpages/pie/Adminpie';
 
 
 function App() {
@@ -70,8 +72,8 @@ function App() {
               <Route index element={<List />} />
               <Route path=":productId" element={<Sponsorsingle />} />    
         </Route>
-        <Route path='pie' element={<Pie />} />
-        <Route path='bar' element={<Bar />} />
+        <Route path='pie' element={<Adminpie />} />
+        <Route path='bar' element={<Adminbar />} />
 
 
         {/* sponsoradmin routes */}

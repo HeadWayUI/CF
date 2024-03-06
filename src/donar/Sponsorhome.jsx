@@ -7,6 +7,7 @@ import Sponsorfeatured from "../../sponsorcomponents/featured/Sponsorfeatured";
 import Sponsorchart from "../../sponsorcomponents/chart/Sponsorchart";
 // import Sponsortable from "../../sponsorcomponents/table/Sponsortable";
 
+
 const Sponsorhome = () => {
   return (
     <div className="home">

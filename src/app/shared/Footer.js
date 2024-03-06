@@ -16,7 +16,7 @@ const Footer = () => {
                                 <h3 className ="heading-section">Get Connected</h3>
                                 <ul>
                                     <li><span className ="icon icon-map-marker"></span><span className ="text">Ragini Residency 3 - D , Sriram Nagar , Kondapur, Hyderabad, India</span></li>
-                                    <li><a href="#"><span className ="icon icon-phone"></span><span className ="text">+91 9898989898</span></a></li>
+                                    <li><a href="#"><span className ="icon icon-phone"></span><span className ="text">+91 9898989899</span></a></li>
                                     <li><a href="#"><span className ="icon icon-envelope"></span><span className ="text">careerfundsinfo@gmail.com</span></a></li>
                                 </ul>
                             </div>
