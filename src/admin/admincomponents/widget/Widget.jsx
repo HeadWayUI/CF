@@ -5,11 +5,40 @@ import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
+import { useState, useEffect } from 'react';
 
 const Widget = ({ type }) => {
+
+  const [donars, setDonars] = useState([]);
+  const [client, setClient] = useState([]);
+  const [students, setStudents] = useState([]);
+  const [trainers, setTrainers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const baseUrl ="http://ec2-13-51-102-167.eu-north-1.compute.amazonaws.com:9090";
+
   let data;
 
+        // Donar api endpoint
+        useEffect(() => {
+          const fetchDonars = async () => {
+            try {
+              const response = await fetch(baseUrl + '/api/donors'); // Replace with your API endpoint
+              if (!response.ok) {
+                throw new Error('Failed to fetch data');
+              }
+              const data = await response.json();
+              setDonars(data);
+            } catch (error) {
+              console.error('Error fetching user data:', error);
+            } finally {
+              setLoading(false);
+            }
+          };
+          fetchDonars();
+      }, []);
+
   //temporary
+  
   const amount = 1500;
   const diff = 20;
 

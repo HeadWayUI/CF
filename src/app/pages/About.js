@@ -11,7 +11,7 @@ const About = () => {
         <div className="container">
           <div className="row align-items-center justify-content-center">
             <div className="col-md-7 text-center">
-              <h2 className="heading">About The Organization</h2>
+              <h2 className="heading">Welcome to CareerFunds!</h2>
             </div>
           </div>
         </div>
@@ -20,15 +20,14 @@ const About = () => {
   <div className="site-section mb-5">
     <div className="container">
       <div className="row mb-5">
-        <div className="col-md-12 mb-5"><h1>Our History</h1></div>
+        <div className="col-md-12 mb-2"><h1>About Us</h1></div>
         <div className="col-md-6">
-            <p className="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni, necessitatibus officiis facere nisi et, ut adipisci a quis quisquam vitae doloremque tempora repellat quae accusantium atque eum voluptatibus aperiam cumque.</p>
-            <p>Quia ratione, eum harum ab similique mollitia, nisi itaque vel voluptas ipsam dolore perferendis. Deleniti voluptatum error possimus ipsum, sed, obcaecati. Sit unde quia eum repudiandae molestiae reprehenderit harum nesciunt.</p>
+            <p className="lead">At CareerFunds, we are dedicated to empowering individuals to achieve their career aspirations and unlock their full potential. Whether you're a recent graduate exploring career opportunities or a seasoned professional looking to advance in your field, we're here to support you every step of the way.</p>
+            <p className="lead">Our mission is to provide accessible and comprehensive resources to help individuals navigate the ever-evolving landscape of the job market. From career counseling and resume writing to interview preparation and skill development, we offer a range of services tailored to meet your unique needs.</p>
             
           </div>
           <div className="col-md-6">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni, necessitatibus officiis facere nisi et, ut adipisci a quis quisquam vitae doloremque tempora repellat quae accusantium atque eum voluptatibus aperiam cumque.</p>
-            <p>Quia ratione, eum harum ab similique mollitia, nisi itaque vel voluptas ipsam dolore perferendis. Deleniti voluptatum error possimus ipsum, sed, obcaecati. Sit unde quia eum repudiandae molestiae reprehenderit harum nesciunt.</p>
+          <img src="../assets/images/volunter.jpg" alt="Image placeholder" width={550} height={400} style={{borderRadius:8}}/>
           </div>
       </div>
       

@@ -62,6 +62,96 @@ const Gallery = () => {
               </div>
              
             </div>
+            <div className="row">
+              <div className="col-md-4">
+                <a
+                  href="images/img_1.jpg"
+                  className="img-hover"
+                  data-fancybox="gallery"
+                >
+                  <span className="icon icon-search"></span>
+                  <img
+                    src="../assets/images/img_1.jpg"
+                    alt="Image placeholder"
+                    className="img-fluid"
+                  />
+                </a>
+              </div>
+              <div className="col-md-4">
+                <a
+                  href="images/img_2.jpg"
+                  className="img-hover"
+                  data-fancybox="gallery"
+                >
+                  <span className="icon icon-search"></span>
+                  <img
+                    src="../assets/images/img_2.jpg"
+                    alt="Image placeholder"
+                    className="img-fluid"
+                  />
+                </a>
+              </div>
+              <div className="col-md-4">
+                <a
+                  href="images/img_1.jpg"
+                  className="img-hover"
+                  data-fancybox="gallery"
+                >
+                  <span className="icon icon-search"></span>
+                  <img
+                    src="../assets/images/img_1.jpg"
+                    alt="Image placeholder"
+                    className="img-fluid"
+                  />
+                </a>
+              </div>
+             
+            </div>
+            <div className="row">
+              <div className="col-md-4">
+                <a
+                  href="images/img_1.jpg"
+                  className="img-hover"
+                  data-fancybox="gallery"
+                >
+                  <span className="icon icon-search"></span>
+                  <img
+                    src="../assets/images/img_1.jpg"
+                    alt="Image placeholder"
+                    className="img-fluid"
+                  />
+                </a>
+              </div>
+              <div className="col-md-4">
+                <a
+                  href="images/img_2.jpg"
+                  className="img-hover"
+                  data-fancybox="gallery"
+                >
+                  <span className="icon icon-search"></span>
+                  <img
+                    src="../assets/images/img_2.jpg"
+                    alt="Image placeholder"
+                    className="img-fluid"
+                  />
+                </a>
+              </div>
+              <div className="col-md-4">
+                <a
+                  href="images/img_1.jpg"
+                  className="img-hover"
+                  data-fancybox="gallery"
+                >
+                  <span className="icon icon-search"></span>
+                  <img
+                    src="../assets/images/img_1.jpg"
+                    alt="Image placeholder"
+                    className="img-fluid"
+                  />
+                </a>
+              </div>
+             
+            </div>
           </div>
         </div>
         <Footer />

@@ -4,12 +4,9 @@ import Footer from '../shared/Footer';
 import { useState, useEffect } from 'react';
 
 const Blog = () => {
-    const [article, setArticle] = useState([]);
+        const [article, setArticle] = useState([]);
         const [loading, setLoading] = useState(true);
         const baseUrl = "http://ec2-13-51-102-167.eu-north-1.compute.amazonaws.com:9090"
-
-
-        
         useEffect(() => {
             const fetchArticles = async () => {
               try {

@@ -37,6 +37,7 @@ import Funds from './app/pages/Funds';
 // import Bar from './admin/adminpages/bar/Adminbar';
 import Adminbar from './admin/adminpages/bar/Adminbar';
 import Adminpie from './admin/adminpages/pie/Adminpie';
+import Button from './app/pages/Button';
 
 
 function App() {
@@ -74,6 +75,8 @@ function App() {
         </Route>
         <Route path='pie' element={<Adminpie />} />
         <Route path='bar' element={<Adminbar />} />
+        <Route path='button' element={<Button />} />
+
 
 
         {/* sponsoradmin routes */}
