@@ -188,20 +188,12 @@ const Home = () => {
     const [contactNumber, setContactNumber] = useState('');
     const [emailAddress, setEmailAddress] = useState('');
     const [description, setDescription] = useState('');
-    const [purpose, setPurpose] = useState('');
     const [status, setStatus] = useState('');
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        // Form validation (optional)
-        if (!firstName || contactNumber || !emailAddress || !description || !purpose) {
-            setStatus('Please fill in all required fields.');
-            return;
-        }
-
-        const data = { firstName, contactNumber, emailAddress, description, purpose };
+        const data = { firstName, contactNumber, emailAddress, description };
 
         try {
             const response = await fetch('http://ec2-13-51-102-167.eu-north-1.compute.amazonaws.com:9090/contactus/add', {
@@ -216,7 +208,6 @@ const Home = () => {
                 setContactNumber('');
                 setEmailAddress('');
                 setDescription('');
-                setPurpose('');
             } else {
                 setStatus('There was an error submitting the form. Please try again.');
             }
@@ -224,8 +215,7 @@ const Home = () => {
             console.error('Error submitting form:', error);
             setStatus('There was an error submitting the form. Please try again.');
         }
-
-
+    }
         const options = {
             item: 1,
             loop: true,
@@ -541,21 +531,21 @@ const Home = () => {
                             <div className="col-md-6 pl-md-5">
                                 <div className="form-volunteer">
                                     <h2>Be In Touch .. !</h2>
-                                    <form action="#" method="post" onSubmit={handleSubmit}>
+                                    <form action="#" method="post" onSubmit={handleSubmit} >
 
                                         {/* {formError && <p className="error">{formError}</p>} */}
                                         <div className="form-group">
                                             <label htmlFor="name">Name</label>
-                                            <input type="text" name="firstName" value={name} onChange={(e) => setName(e.target.value)} className="form-control py-2" id="name" placeholder="Enter your name" />
+                                            <input type="text" name="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} className="form-control py-2" id="name" placeholder="Enter your name" />
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="phone">Phone</label>
-                                            <input type="number" name='contactNumber' value={phone} onChange={(e) => setPhone(e.target.value)} className="form-control py-2" id="email" placeholder="Enter your phoneNumber" />
+                                            <input type="number" name='contactNumber' value={contactNumber} onChange={(e) => setContactNumber(e.target.value)} className="form-control py-2" id="email" placeholder="Enter your phoneNumber" />
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="email">Email</label>
-                                            <input type="email" name='emailAddress'  value={email}
-        onChange={(e) => setEmail(e.target.value)} className="form-control py-2" id="email" placeholder="Enter your email" />
+                                            <input type="email" name='emailAddress'  value={emailAddress}
+        onChange={(e) => setEmailAddress(e.target.value)} className="form-control py-2" id="email" placeholder="Enter your email" />
                                         </div>
 
                                         <div className="form-group">
@@ -567,6 +557,7 @@ const Home = () => {
                                             <input type="submit" className="btn btn-white px-5 py-2" value="Send" />
                                         </div>
                                     </form>
+                                    {status && <p className="status">{status}</p>} {/* Display status message */}
                                 </div>
                             </div>
                         </div>
