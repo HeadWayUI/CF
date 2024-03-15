@@ -5,10 +5,10 @@ import Donate from './app/pages/Donate';
 import Gallery from './app/pages/Gallery';
 import Blog from './app/pages/Blog';
 import Conatct from './app/pages/Conatct';
-import Login from './app/pages/login/Login'
-import Sidebar from './app/pages/sidebar/Sidebar'
-import Navbar from './admin/admincomponents/navbar/Navbar'
-import Signup from './app/pages/login/Signup';
+import Login from './app/authentication/Login';
+import Registration from './app/authentication/Registration';
+import Sidebar from './app/pages/sidebar/Sidebar';
+import Navbar from './admin/admincomponents/navbar/Navbar';
 import { productInputs, userInputs } from "./formSource";
 
 // import { useContext } from "react";
@@ -51,8 +51,8 @@ function App() {
         <Route path='/gallery' element={<Gallery />} />
         <Route path='/blog' element={<Blog />} />
         <Route path='/contact' element={<Conatct />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/signup' element={<Signup />} />
+        <Route path='/login' element={<Login/>} />
+        <Route path='/signup' element={<Registration />} />
         <Route path='/sidenav' element={<Sidebar />} />
         <Route path='/nav' element={<Navbar />} />
         <Route path='/allinterns' element={<Allstudents />} />
