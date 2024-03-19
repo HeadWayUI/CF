@@ -38,6 +38,8 @@ import Funds from './app/pages/Funds';
 import Adminbar from './admin/adminpages/bar/Adminbar';
 import Adminpie from './admin/adminpages/pie/Adminpie';
 import Button from './app/pages/Button';
+import Sponsors from './admin/adminpages/sponsors/Sponsors';
+import Trainers from './admin/adminpages/trainers/Trainers';
 
 
 function App() {
@@ -64,18 +66,21 @@ function App() {
         
         {/* admin routes */}
         <Route path="admin" element={<Homee />} />
-        <Route path="users">
+        <Route path="learners">
           <Route index element={<List />} />
-          <Route path=":userId" element={<Single />} />
+          <Route path=":learnersId" element={<Single />} />
           <Route path="new" element={<New inputs={userInputs} title="Add New User" />}/>   
         </Route>
         <Route path="adminlearner">
               <Route index element={<List />} />
-              <Route path=":productId" element={<Sponsorsingle />} />    
+              <Route path=":sponsorId" element={<Single />} />    
         </Route>
         <Route path='pie' element={<Adminpie />} />
         <Route path='bar' element={<Adminbar />} />
         <Route path='button' element={<Button />} />
+        <Route path='sponsorlist' element={<Sponsors />} />
+        <Route path='trainerslist' element={<Trainers />} />
+       
 
 
 

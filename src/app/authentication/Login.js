@@ -25,7 +25,7 @@ const Login = () => {
         console.log(data)
         // Login successful
         // Redirect to admin component
-        navigate('/admin'); 
+        navigate('/sponsoradmin'); 
       } else {
         // Login failed
         setError(data.message || 'Login failed');

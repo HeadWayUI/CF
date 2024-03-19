@@ -3,10 +3,26 @@ import React  from 'react';
 import { DataGrid } from "@mui/x-data-grid";
 import { userColumns, userRows } from "../../../datatablesource";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from 'react';
 
 const Datatable = () => {
-  const [data, setData] = useState(userRows);
+  const [data, setData] = useState([]);
+  const baseUrl = "http://ec2-13-51-102-167.eu-north-1.compute.amazonaws.com:9090";
+
+  useEffect(() => {
+    // Fetch data from the endpoint
+    fetch(baseUrl + '/api/students') // Replace 'your_endpoint_url' with the actual URL of your endpoint
+      .then(response => response.json())
+      .then(data => {
+        const newData = data.map((row, index) => ({ ...row, id: index + 1 }));
+        setData(newData);
+        // Assuming your endpoint returns an array of user data
+        // setData(data);
+      })
+      .catch(error => {
+        console.error('Error fetching user data:', error);
+      });
+  }, []);
 
   const handleDelete = (id) => {
     setData(data.filter((item) => item.id !== id));
@@ -20,7 +36,7 @@ const Datatable = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
+            <Link to={`/users/test/${params.row.id}`} style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
             </Link>
             <div
@@ -37,7 +53,7 @@ const Datatable = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Add New User
+        Add New
         <Link to="/users/new" className="link">
           Add New
         </Link>

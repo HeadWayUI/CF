@@ -1,23 +1,41 @@
 import "./sponsorwidget.scss";
-import React  from 'react';
+import React, { useState, useEffect } from 'react';
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
+import { Link } from 'react-router-dom';
 
 
-const Sponsorwidget = ({ type }) => {
-  let data;
+const Sponsorwidget = ({type,data}) => {
+
+  const [count, setCount] = useState(0); 
+  const baseUrl = "http://ec2-13-51-102-167.eu-north-1.compute.amazonaws.com:9090";
+ 
+
+  useEffect(() => {
+    // Fetch data from endpoint
+    // Example fetch request
+    fetch(baseUrl + "/api/students")
+      .then(response => response.json())
+      .then(data => {
+        // Assuming your data structure contains amount and diff fields
+        console.log(data.length)
+        setCount(data.count);
+      })
+      .catch(error => console.error('Error fetching data:', error));
+  }, []);
+  
+  let widgetData;
 
   //temporary
-  const amount = 1500;
   const diff = 20;
 
   switch (type) {
     case "learners":
-      data = {
+      widgetData = {
         title: "LEARNERS",
         isMoney: false,
-        link: "See all users",
+        link: "See all learners",
         icon: (
           <PersonOutlinedIcon
             className="icon"
@@ -30,7 +48,7 @@ const Sponsorwidget = ({ type }) => {
       };
       break;
     case "funds":
-      data = {
+      widgetData = {
         title: "FUNDS",
         isMoney: true,
         link: "See details",
@@ -52,18 +70,18 @@ const Sponsorwidget = ({ type }) => {
   return (
     <div className="widget">
       <div className="left">
-        <span className="title">{data.title}</span>
+        <span className="title">{widgetData.title}</span>
         <span className="counter">
-          {data.isMoney && "$"} {amount}
+          {widgetData.isMoney && "$"}  {data ? data.length : 0}
         </span>
-        <span className="link">{data.link}</span>
+        <Link to="/learner" className="link">{widgetData.link}</Link>
       </div>
       <div className="right">
         <div className="percentage positive">
           <KeyboardArrowUpIcon />
           {diff} %
         </div>
-        {data.icon}
+        {widgetData.icon}
       </div>
     </div>
   );

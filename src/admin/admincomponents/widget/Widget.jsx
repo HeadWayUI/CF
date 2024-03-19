@@ -38,6 +38,8 @@ const Widget = ({ type }) => {
       }, []);
 
   //temporary
+
+  
   
   const amount = 1500;
   const diff = 20;
@@ -47,7 +49,7 @@ const Widget = ({ type }) => {
       data = {
         title: "LEARNERS",
         isMoney: false,
-        link: "See all users",
+        link: "See all learner",
         icon: (
           <PersonOutlinedIcon
             className="icon"
@@ -63,7 +65,7 @@ const Widget = ({ type }) => {
       data = {
         title: "SPONSORS",
         isMoney: false,
-        link: "View all orders",
+        link: "View all sponsors",
         icon: (
           <ShoppingCartOutlinedIcon
             className="icon"
@@ -75,6 +77,22 @@ const Widget = ({ type }) => {
         ),
       };
       break;
+      case "trainers":
+        data = {
+          title: "TRAINERS",
+          isMoney: false,
+          link: "View all trainers",
+          icon: (
+            <ShoppingCartOutlinedIcon
+              className="icon"
+              style={{
+                backgroundColor: "rgba(218, 165, 32, 0.2)",
+                color: "goldenrod",
+              }}
+            />
+          ),
+        };
+        break;
     case "fundsavailable":
       data = {
         title: "FUNDS AVAILABLE",

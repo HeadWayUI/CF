@@ -1,11 +1,11 @@
 import React  from 'react';
 export const userColumns = [
 
-  { field: "id", headerName: "L_Id", width: 70 },
+  { field: "id", headerName: "S_Id", width: 70 },
   
   {
     field: "firstName",
-    headerName: "L_Name",
+    headerName: "S_Name",
     width: 150,
     renderCell: (params) => {
       return (
@@ -18,37 +18,37 @@ export const userColumns = [
   },
   {
     field: "emailAddress",
-    headerName: "L_Email",
+    headerName: "S_Email",
     width: 220,
   },
 
   {
     field: "contactNumber",
-    headerName: "L_Phone",
+    headerName: "S_Phone",
     width: 120,
   },
   {
     field: "address",
-    headerName: "L_Address",
+    headerName: "S_Address",
     width: 120,
   },
   {
-    field: "course",
-    headerName: "Course",
+    field: "userType",
+    headerName: "UserType",
     width: 120,
   },
-  {
-    field: "placed",
-    headerName: "Status",
-    width: 100,
-    renderCell: (params) => {
-      return (
-        <div className={`cellWithStatus ${params.row.placed ? 'placed' : 'not-placed'}`}>
-        {params.row.placed ? 'Placed' : 'Not Placed'}
-      </div>
-      );
-    },
-  },
+//   {
+//     field: "placed",
+//     headerName: "Status",
+//     width: 100,
+//     renderCell: (params) => {
+//       return (
+//         <div className={`cellWithStatus ${params.row.placed ? 'placed' : 'not-placed'}`}>
+//         {params.row.placed ? 'Placed' : 'Not Placed'}
+//       </div>
+//       );
+//     },
+//   },
 ];
 
 //temporary data

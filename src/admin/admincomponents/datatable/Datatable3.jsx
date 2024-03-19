@@ -1,22 +1,17 @@
-import "./sponsordatatable.scss";
+import "./datatable.scss";
 import React  from 'react';
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../../../datatablesource";
+import { userColumns, userRows } from "../../../datatablesource3";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
 
-
-const Sponsordatatable = () => {
+const Datatable3 = () => {
   const [data, setData] = useState([]);
   const baseUrl = "http://ec2-13-51-102-167.eu-north-1.compute.amazonaws.com:9090";
 
-  // const handleDelete = (id) => {
-  //   setData(data.filter((item) => item.id !== id));
-  // };
-
   useEffect(() => {
     // Fetch data from the endpoint
-    fetch(baseUrl + '/api/students') // Replace 'your_endpoint_url' with the actual URL of your endpoint
+    fetch(baseUrl + '/api/trainers') // Replace 'your_endpoint_url' with the actual URL of your endpoint
       .then(response => response.json())
       .then(data => {
         const newData = data.map((row, index) => ({ ...row, id: index + 1 }));
@@ -29,23 +24,27 @@ const Sponsordatatable = () => {
       });
   }, []);
 
+  const handleDelete = (id) => {
+    setData(data.filter((item) => item.id !== id));
+  };
+
   const actionColumn = [
     {
       field: "action",
       headerName: "Action",
-      width: 100,
+      width: 200,
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to={`/learner/${params.row.id}`} style={{ textDecoration: "none" }}>
+            <Link to={`/users/test/${params.row.id}`} style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
             </Link>
-            {/* <div
+            <div
               className="deleteButton"
               onClick={() => handleDelete(params.row.id)}
             >
               Delete
-            </div> */}
+            </div>
           </div>
         );
       },
@@ -53,6 +52,12 @@ const Sponsordatatable = () => {
   ];
   return (
     <div className="datatable">
+      <div className="datatableTitle">
+        Add New
+        <Link to="/users/new" className="link">
+          Add New
+        </Link>
+      </div>
       <DataGrid
         className="datagrid"
         rows={data}
@@ -65,4 +70,4 @@ const Sponsordatatable = () => {
   );
 };
 
-export default Sponsordatatable;
+export default Datatable3;

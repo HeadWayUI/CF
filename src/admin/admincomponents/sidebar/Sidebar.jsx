@@ -37,16 +37,22 @@ const Sidebar = () => {
           </li>
           </Link>
           <p className="title">LISTS</p>
-          <Link to="/users" style={{ textDecoration: "none" }}>
+          <Link to="/learners" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon" />
               <span>Learners</span>
             </li>
           </Link>
-          <Link to="/adminlearner" style={{ textDecoration: "none" }}>
+          <Link to="/sponsorlist" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon" />
               <span>Sponsers</span>
+            </li>
+          </Link>
+          <Link to="/trainerslist" style={{ textDecoration: "none" }}>
+            <li>
+              <PersonOutlineIcon className="icon" />
+              <span>Trainers</span>
             </li>
           </Link>
           <li>
@@ -60,12 +66,12 @@ const Sidebar = () => {
           <p className="title">USEFUL</p>
           <li>
             <InsertChartIcon className="icon" />
-            <span>Payments</span>
+            <span>Payment History</span>
           </li>
-          <li>
+          {/* <li>
             <NotificationsNoneIcon className="icon" />
             <span>History</span>
-          </li>
+          </li> */}
           <p className="title">SERVICE</p>
           <li>
             <SettingsSystemDaydreamOutlinedIcon className="icon" />
