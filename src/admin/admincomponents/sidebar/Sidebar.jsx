@@ -73,10 +73,12 @@ const Sidebar = () => {
             <span>History</span>
           </li> */}
           <p className="title">SERVICE</p>
+          <Link to="/clientslist" style={{ textDecoration: "none" }}>
           <li>
             <SettingsSystemDaydreamOutlinedIcon className="icon" />
             <span>Clients</span>
           </li>
+          </Link>
           <li>
             <PsychologyOutlinedIcon className="icon" />
             <span>Advertisement</span>
@@ -92,10 +94,10 @@ const Sidebar = () => {
             <span>Pie</span>
           </li>
           </Link>
-          <Link to="/bar" style={{ textDecoration: "none" }}>
+          <Link to="/linechart" style={{ textDecoration: "none" }}>
           <li>
             <AccountCircleOutlinedIcon className="icon" />
-            <span>Bar</span>
+            <span>Line</span>
           </li>
           </Link>
           <p className="title">USER</p>

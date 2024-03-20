@@ -40,6 +40,9 @@ import Adminpie from './admin/adminpages/pie/Adminpie';
 import Button from './app/pages/Button';
 import Sponsors from './admin/adminpages/sponsors/Sponsors';
 import Trainers from './admin/adminpages/trainers/Trainers';
+import Clients from './admin/adminpages/clients/Clients';
+import Adminline from './admin/adminpages/line/Adminline';
+import Trainers1 from './sponsor/sponsorpages/trainers/Trainers';
 
 
 function App() {
@@ -76,10 +79,11 @@ function App() {
               <Route path=":sponsorId" element={<Single />} />    
         </Route>
         <Route path='pie' element={<Adminpie />} />
-        <Route path='bar' element={<Adminbar />} />
+        <Route path='linechart' element={<Adminline />} />
         <Route path='button' element={<Button />} />
         <Route path='sponsorlist' element={<Sponsors />} />
         <Route path='trainerslist' element={<Trainers />} />
+        <Route path='clientslist' element={<Clients />} />
        
 
 
@@ -97,6 +101,7 @@ function App() {
             <Route path="sponsorpie" element={<Sponsorpiechart />}  />
             <Route path="sponsorbar" element={<Sponsorbarchart />}  />
             <Route path="funds" element={<Sponsorfunds />}  />
+            <Route path="trainers" element={<Trainers1 />}  />
       </Routes>
     </div>
   );

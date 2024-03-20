@@ -54,6 +54,12 @@ const Sponsorsidebar = () => {
               <span>Learners</span>
             </li>
           </Link>
+          <Link to="/trainers" style={{ textDecoration: "none" }}>
+            <li>
+              <PersonOutlineIcon className="icon" />
+              <span>trainers</span>
+            </li>
+          </Link>
           <Link  to = "/funds" style={{ textDecoration: "none" }} >
           <li>
             <PersonOutlineIcon className="icon" />

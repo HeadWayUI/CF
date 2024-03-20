@@ -1,7 +1,7 @@
 import "./datatable.scss";
 import React  from 'react';
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../../../datatablesource";
+import { userColumns, userRows } from "../../../clientsdatatablesource";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
 
@@ -11,7 +11,7 @@ const Datatable = () => {
 
   useEffect(() => {
     // Fetch data from the endpoint
-    fetch(baseUrl + '/api/students') // Replace 'your_endpoint_url' with the actual URL of your endpoint
+    fetch(baseUrl + '/clients/all') // Replace 'your_endpoint_url' with the actual URL of your endpoint
       .then(response => response.json())
       .then(data => {
         const newData = data.map((row, index) => ({ ...row, id: index + 1 }));

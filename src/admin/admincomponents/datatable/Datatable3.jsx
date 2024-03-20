@@ -45,6 +45,12 @@ const Datatable3 = () => {
             >
               Delete
             </div>
+            <div
+              className="updateButton"
+              onClick={() => handleDelete(params.row.id)}
+            >
+              Update
+            </div>
           </div>
         );
       },

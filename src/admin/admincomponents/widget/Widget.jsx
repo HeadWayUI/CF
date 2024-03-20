@@ -6,8 +6,9 @@ import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalance
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
 import { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
 
-const Widget = ({ type }) => {
+const Widget = ({ type ,data}) => {
 
   const [donars, setDonars] = useState([]);
   const [client, setClient] = useState([]);
@@ -16,7 +17,7 @@ const Widget = ({ type }) => {
   const [loading, setLoading] = useState(true);
   const baseUrl ="http://ec2-13-51-102-167.eu-north-1.compute.amazonaws.com:9090";
 
-  let data;
+  // let data;
 
         // Donar api endpoint
         useEffect(() => {
@@ -37,19 +38,21 @@ const Widget = ({ type }) => {
           fetchDonars();
       }, []);
 
-  //temporary
+      let widgetData;
 
-  
-  
-  const amount = 1500;
+  //temporary
   const diff = 20;
 
   switch (type) {
     case "learners":
-      data = {
+      widgetData = {
         title: "LEARNERS",
         isMoney: false,
-        link: "See all learner",
+        link: (
+          <Link to="/learners" >
+            View all Learners
+          </Link>
+        ),
         icon: (
           <PersonOutlinedIcon
             className="icon"
@@ -62,10 +65,14 @@ const Widget = ({ type }) => {
       };
       break;
     case "sponsors":
-      data = {
+      widgetData = {
         title: "SPONSORS",
         isMoney: false,
-        link: "View all sponsors",
+        link: (
+          <Link to="/sponsorlist">
+            View all Sponsors
+          </Link>
+        ),
         icon: (
           <ShoppingCartOutlinedIcon
             className="icon"
@@ -78,10 +85,14 @@ const Widget = ({ type }) => {
       };
       break;
       case "trainers":
-        data = {
+        widgetData = {
           title: "TRAINERS",
           isMoney: false,
-          link: "View all trainers",
+          link: (
+            <Link to="/trainerslist">
+              View all Trainers
+            </Link>
+          ),
           icon: (
             <ShoppingCartOutlinedIcon
               className="icon"
@@ -94,10 +105,14 @@ const Widget = ({ type }) => {
         };
         break;
     case "fundsavailable":
-      data = {
+      widgetData = {
         title: "FUNDS AVAILABLE",
         isMoney: true,
-        link: "View net earnings",
+        link: (
+          <Link to="#" >
+           See All Funds
+          </Link>
+        ),
         icon: (
           <MonetizationOnOutlinedIcon
             className="icon"
@@ -107,10 +122,14 @@ const Widget = ({ type }) => {
       };
       break;
     case "actualfunds":
-      data = {
+      widgetData = {
         title: "ACTUAL FUNDS",
         isMoney: true,
-        link: "See details",
+        link: (
+          <Link to="#">
+            See All Actual Funds
+          </Link>
+        ),
         icon: (
           <AccountBalanceWalletOutlinedIcon
             className="icon"
@@ -129,18 +148,18 @@ const Widget = ({ type }) => {
   return (
     <div className="widget">
       <div className="left">
-        <span className="title">{data.title}</span>
+        <span className="title">{widgetData.title}</span>
         <span className="counter">
-          {data.isMoney && "$"} {amount}
+          {widgetData.isMoney && "$"} {data ? data.length : 0}
         </span>
-        <span className="link">{data.link}</span>
+        <span className="link">{widgetData.link}</span>
       </div>
       <div className="right">
         <div className="percentage positive">
           <KeyboardArrowUpIcon />
           {diff} %
         </div>
-        {data.icon}
+        {widgetData.icon}
       </div>
     </div>
   );

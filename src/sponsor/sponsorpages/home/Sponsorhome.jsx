@@ -11,6 +11,7 @@ import Sponsorchart from "../../sponsorcomponents/chart/Sponsorchart";
 const Sponsorhome = () => {
  
   const [learnersData, setLearnersData] = useState(null);
+  const [trainersData, setTrainersData] = useState(null);
   const [fundsData, setFundsData] = useState(null);
   const baseUrl = "http://ec2-13-51-102-167.eu-north-1.compute.amazonaws.com:9090";
 
@@ -20,7 +21,11 @@ const Sponsorhome = () => {
       .then(response => response.json())
       .then(data => setLearnersData(data))
       .catch(error => console.error('Error fetching learners data:', error));
-
+    // Fetch trainers data
+      fetch(baseUrl + '/api/trainers')
+      .then(response => response.json())
+      .then(data => setTrainersData(data))
+      .catch(error => console.error('Error fetching learners data:', error));
     // Fetch funds data
     fetch('funds_endpoint_url')
       .then(response => response.json())
@@ -35,6 +40,7 @@ const Sponsorhome = () => {
         <Sponsornavbar />
         <div className="widgets">
           <Sponsorwidget type="learners" data={learnersData} />
+          <Sponsorwidget type="trainers" data={trainersData} />
           <Sponsorwidget type="funds"   data={fundsData} />
         </div>
         <div className="charts">

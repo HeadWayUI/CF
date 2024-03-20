@@ -35,7 +35,31 @@ const Sponsorwidget = ({type,data}) => {
       widgetData = {
         title: "LEARNERS",
         isMoney: false,
-        link: "See all learners",
+        link: (
+          <Link to="/learner">
+            View all learners
+          </Link>
+        ),
+        icon: (
+          <PersonOutlinedIcon
+            className="icon"
+            style={{
+              color: "crimson",
+              backgroundColor: "rgba(255, 0, 0, 0.2)",
+            }}
+          />
+        ),
+      };
+      break;
+      case "trainers":
+      widgetData = {
+        title: "TRAINERS",
+        isMoney: false,
+        link: (
+          <Link to="/trainers">
+            View all trainers
+          </Link>
+        ),
         icon: (
           <PersonOutlinedIcon
             className="icon"
@@ -51,7 +75,11 @@ const Sponsorwidget = ({type,data}) => {
       widgetData = {
         title: "FUNDS",
         isMoney: true,
-        link: "See details",
+        link: (
+          <Link to="#">
+            See all Funds
+          </Link>
+        ),
         icon: (
           <AccountBalanceWalletOutlinedIcon
             className="icon"
@@ -74,7 +102,7 @@ const Sponsorwidget = ({type,data}) => {
         <span className="counter">
           {widgetData.isMoney && "$"}  {data ? data.length : 0}
         </span>
-        <Link to="/learner" className="link">{widgetData.link}</Link>
+        <span className="link">{widgetData.link}</span>
       </div>
       <div className="right">
         <div className="percentage positive">
