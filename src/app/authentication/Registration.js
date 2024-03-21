@@ -1,4 +1,4 @@
-// import './registration.css';
+import './registration.css';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,6 +11,7 @@ const Registration = () => {
     const [password, setPassword] = useState('');
     const [userType, setUserType] = useState('ADMIN');
     const [gender, setGender] = useState('');
+    const [image, setImage] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
@@ -50,6 +51,7 @@ const Registration = () => {
               password,
               userType,
               gender,
+              image
             }),
           });
           const data = await response.json();
@@ -125,7 +127,12 @@ const Registration = () => {
             onChange={() => setGender('FEMALE')} />
             <label class="form-check-label" for="inlineRadio2" htmlFor="female" style={{color:"#fff"}}>Female</label>
         </div>
-        <button class="submit">Submit</button>
+        <div className="form-group">
+            <label htmlFor="createPhoto">Photo</label>
+            <input type="file" value={image}
+            onChange={(e) => setImage(e.target.value)} className="form-control-file" id="createPhoto" />
+          </div>
+        <button  class="submit">Submit</button>
         {error && <div>{error}</div>}
         <p class="signin">Already have an acount ? <a href="#">Signin</a> </p>
     </form>

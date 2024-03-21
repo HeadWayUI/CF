@@ -1,0 +1,389 @@
+import "./datatable.scss";
+import React  from 'react';
+import { DataGrid } from "@mui/x-data-grid";
+import { userColumns} from "../../../datatablesource";
+import { Link } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
+
+
+const Datatable = () => {
+
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [contactNumber, setContactNumber] = useState('');
+  const [password, setPassword] = useState('');
+  const [emailAddress, setEmailAddress] = useState('');
+  const [gender, setGender] = useState('');
+  const [placed, setPlaced] = useState('');
+  const [course, setCourse] = useState('');
+  const [description, setDescription] = useState('');
+  const [userType, setUserType] = useState('');
+  
+
+
+
+  const [data, setData] = useState([]);
+  const [values, setValues] = useState({
+    firstName:'',
+    lastName:'',
+    contactNumber:'',
+    emailAddress:'',
+    password:'',
+    userType:'',
+    gender:'',
+    placed:'',
+    course:'',
+    description:'',
+    image:'',
+    trainers:''
+  })
+  // const [firstName, setFirstName] = useState('');
+  // const [lastName, setLastName] = useState('');
+  // const [contactNumber, setContactNumber] = useState('');
+  // const [emailAddress, setEmailAddress] = useState('');
+  // const [password, setPassword] = useState('');
+  // const [userType, setUserType] = useState('');
+  // const [gender, setGender] = useState('');
+  // const [placed, setPlaced] = useState('');
+  // const [course, setCourse] = useState('');
+  // const [description, setDescription] = useState('');
+  // const [image, setImage] = useState('');
+  // const [trainers, setTrainer] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+
+  const baseUrl = "http://ec2-13-51-102-167.eu-north-1.compute.amazonaws.com:9090";
+
+  useEffect(() => {
+    // Fetch data from the endpoint
+    fetch(baseUrl + '/api/students') // Replace 'your_endpoint_url' with the actual URL of your endpoint
+      .then(response => response.json())
+      .then(data => {
+        const newData = data.map((row, index) => ({ ...row, id: index + 1 }));
+        setData(newData);
+        // Assuming your endpoint returns an array of user data
+        // setData(data);
+      })
+      .catch(error => {
+        console.error('Error fetching user data:', error);
+      });
+  }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios.post("http://ec2-13-51-102-167.eu-north-1.compute.amazonaws.com:9090/api/register/student",values)
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+}
+
+// const handleSubmit = (e) => {
+//   e.preventDefault();
+//   // Retrieve token from localStorage
+//   const token = localStorage.getItem('token');
+//   console.log(token)
+//   if (!token) {
+//       console.error('Token not found in localStorage');
+//       return;
+//   }
+
+//   // Construct the request headers
+//   const headers = {
+//       'Content-Type': 'application/json',
+//       'Authorization': `Bearer ${token}`
+//   };
+
+//   // Make the fetch request
+//   fetch(baseUrl + "/api/register/student", {
+//       method: 'POST',
+//       headers: headers,
+//       body: JSON.stringify({
+//         firstName,
+//         lastName,
+//         contactNumber,
+//         password,
+//         emailAddress,
+//         gender,
+//         placed,
+//         course,
+//         description,
+//         image,
+//         userType,
+//         trainers
+//     }) // Include request body if needed
+//   })
+//   .then(response => {
+//       if (!response.ok) {
+//           throw new Error('Network response was not ok');
+//       }
+//       return response.json();
+//   })
+//   .then(data => {
+//       console.log('Response data:', data);
+      
+//       navigate('/learners');
+//       // Handle the response data as needed
+//   })
+//   .catch(error => {
+//       console.error('There was a problem with the fetch operation:', error);
+//       // Handle errors
+//   });
+// };
+
+
+  const actionColumn = [
+    {
+      field: "action",
+      headerName: "Action",
+      width: 200,
+      renderCell: (params) => {
+        return (
+          <div className="cellAction">
+          <div className="viewButton">
+          <Link to={`/sread/${trainer.ID}}`} type="button"  data-toggle="modal" data-target="#viewFormModal">View</Link>
+          </div>
+            <div className="updateButton">
+             <button type="button"  data-toggle="modal" data-target="#createFormModal">Update</button>
+            </div>
+            <div className="deleteButton">
+            <button type="button"  data-toggle="modal">Delete</button>
+            </div>
+          </div>
+        );
+      },
+    },
+  ];
+
+  return (
+    <>
+    <div className="datatable">
+      <div className="datatableTitle">
+        Add New
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createFormModal">Create</button>
+      </div>
+      <DataGrid
+        className="datagrid"
+        rows={data}
+        columns={userColumns.concat(actionColumn)}
+        pageSize={9}
+        rowsPerPageOptions={[9]}
+        checkboxSelection
+      />
+    </div>
+
+{/* Student create Form Start */}
+    <div className="modal fade" id="createFormModal" tabindex="-1" role="dialog" aria-labelledby="createFormModalLabel" aria-hidden="true">
+  <div className="modal-dialog" role="document">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="createFormModalLabel">Student Creation Form</h5>
+        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div className="modal-body">
+        {/* <!-- Create Form Fields --> */}
+        {/* <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="createFirstName">First Name</label>
+            <input type="text" value={firstName} 
+            onChange={(e) => setFirstName(e.target.value)} className="form-control" id="createFirstName" placeholder="Enter First Name" />
+          </div>
+          <div className="form-group">
+            <label htmlFor="createLastName">Last Name</label>
+            <input type="text"value={lastName}
+            onChange={(e) => setLastName(e.target.value)} className="form-control" id="createLastName" placeholder="Enter Last Name" />
+          </div>
+          <div className="form-group">
+            <label htmlFor="createPhone">Phone</label>
+            <input type="tel" value={contactNumber}
+            onChange={(e) => setContactNumber(e.target.value)} className="form-control" id="createPhone" placeholder="Enter Phone" />
+          </div>
+            
+          <div className="form-group">
+            <label htmlFor="createPassword">Password</label>
+            <input type="password" value={password}
+            onChange={(e) => setPassword(e.target.value)} className="form-control" id="createPassword" placeholder="Enter Password" />
+          </div>
+          <div className="form-group">
+            <label htmlFor="createEmail">Email</label>
+            <input type="email" value={emailAddress}
+            onChange={(e) => setEmailAddress(e.target.value)} className="form-control" id="createEmail" placeholder="Enter Email" />
+          </div>
+          <div className="form-group">
+              <label htmlFor="gender">Gender</label>
+              <select className="form-control" value={gender}
+            onChange={(e) => setGender(e.target.value)} id="gender">
+                  <option value="#">Select</option>
+                  <option value="MALE">Male</option>
+                  <option value="FEMALE">Female</option>
+                  <option value="OTHERS">Other</option>
+              </select>
+          </div>
+          <div className="form-group">
+              <label htmlFor="userType">Placed</label>
+              <select className="form-control" value={placed}
+            onChange={(e) => setPlaced(e.target.value)} id="userType">
+                  <option value="#">Choose One</option>
+                  <option value="true">Placed</option>
+                  <option value="false">Not_Placed</option>
+              </select>
+          </div>
+          <div className="form-group">
+              <label htmlFor="userType">Course</label>
+              <select className="form-control" value={course}
+            onChange={(e) => setCourse(e.target.value)} id="userType">
+                  <option value="#">Chose Your Course</option>
+                  <option value="Dot_Net">Dot Net</option>
+                  <option value="Java">Java</option>
+                  <option value="Python">Python</option>
+                  <option value="SalesForce">Sales force</option>
+              </select>
+          </div>
+          <div className="form-group">
+            <label htmlFor="createFirstName">Description</label>
+            <input type="text" value={description}
+            onChange={(e) => setDescription(e.target.value)} className="form-control" id="createFirstName" placeholder="Enter First Name" />
+          </div>
+          <div className="form-group">
+            <label htmlFor="createPhoto">Photo</label>
+            <input type="file" value={image}
+            onChange={(e) => setImage(e.target.value)} className="form-control-file" id="createPhoto" />
+          </div>
+          <div className="form-group">
+              <label htmlFor="userType">User Type</label>
+              <select className="form-control" value={userType}
+            onChange={(e) => setUserType(e.target.value)} id="userType">
+                  <option value="#">Chose</option>
+                  <option value="STUDENT">Student</option>
+                  <option value="ADMIN">Admin</option>
+                  <option value="TRAINER">Trainer</option>
+                  <option value="SPONSORADMIN">Sponsor Admin</option>
+              </select>
+          </div>
+          {/* <div className="form-group">
+              <label htmlFor="trainer">Trainer</label>
+              <select className="form-control" value={trainers}
+            onChange={(e) => setTrainer(e.target.value)} id="userType">
+                  <option value="#">Select Trainer</option>
+                  <option value="Trainer">Trainer1</option>
+                  <option value="Trainer">Trainer2</option>
+                  <option value="Trainer">Trainer3</option>
+                  <option value="Trainer">Trainer4</option>
+              </select>
+          </div> */}
+          {/* <div className="modal-footer">
+        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button  type="submit" className="btn btn-primary">Create</button>
+        {error && <div>{error}</div>}
+      </div>
+        </form> */}
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="createFirstName">First Name</label>
+            <input type="text" 
+            onChange={ e => setValues({...values, firstName:e.target.value})} className="form-control" id="createFirstName" placeholder="Enter First Name" />
+          </div>
+          <div className="form-group">
+            <label htmlFor="createLastName">Last Name</label>
+            <input type="text"
+            onChange={ e => setValues({...values, lastName:e.target.value})} className="form-control" id="createLastName" placeholder="Enter Last Name" />
+          </div>
+          <div className="form-group">
+            <label htmlFor="createPhone">Phone</label>
+            <input type="tel" 
+            onChange={ e => setValues({...values, contactNumber:e.target.value})} className="form-control" id="createPhone" placeholder="Enter Phone" />
+          </div>
+            
+          <div className="form-group">
+            <label htmlFor="createPassword">Password</label>
+            <input type="password" 
+            onChange={ e => setValues({...values, password:e.target.value})} className="form-control" id="createPassword" placeholder="Enter Password" />
+          </div>
+          <div className="form-group">
+            <label htmlFor="createEmail">Email</label>
+            <input type="email" 
+           onChange={ e => setValues({...values, emailAddress:e.target.value})} className="form-control" id="createEmail" placeholder="Enter Email" />
+          </div>
+          <div className="form-group">
+              <label htmlFor="gender">Gender</label>
+              <select className="form-control"
+            onChange={ e => setValues({...values, gender:e.target.value})} id="gender">
+                  <option value="#">Select</option>
+                  <option value="MALE">Male</option>
+                  <option value="FEMALE">Female</option>
+                  <option value="OTHERS">Other</option>
+              </select>
+          </div>
+          <div className="form-group">
+              <label htmlFor="userType">Placed</label>
+              <select className="form-control" 
+            onChange={ e => setValues({...values, placed:e.target.value})} id="userType">
+                  <option value="#">Choose One</option>
+                  <option value="true">Placed</option>
+                  <option value="false">Not_Placed</option>
+              </select>
+          </div>
+          <div className="form-group">
+              <label htmlFor="userType">Course</label>
+              <select className="form-control" 
+            onChange={ e => setValues({...values, course:e.target.value})} id="userType">
+                  <option value="#">Chose Your Course</option>
+                  <option value="Dot_Net">Dot Net</option>
+                  <option value="Java">Java</option>
+                  <option value="Python">Python</option>
+                  <option value="SalesForce">Sales force</option>
+              </select>
+          </div>
+          <div className="form-group">
+            <label htmlFor="createFirstName">Description</label>
+            <input type="text"
+            onChange={ e => setValues({...values, description:e.target.value})} className="form-control" id="createFirstName" placeholder="Enter First Name" />
+          </div>
+          <div className="form-group">
+            <label htmlFor="createPhoto">Photo</label>
+            <input type="file" 
+            onChange={ e => setValues({...values, image:e.target.value})} className="form-control-file" id="createPhoto" />
+          </div>
+          <div className="form-group">
+              <label htmlFor="userType">User Type</label>
+              <select className="form-control"
+           onChange={ e => setValues({...values, userType:e.target.value})} id="userType">
+                  <option value="#">Chose</option>
+                  <option value="STUDENT">Student</option>
+                  <option value="ADMIN">Admin</option>
+                  <option value="TRAINER">Trainer</option>
+                  <option value="SPONSORADMIN">Sponsor Admin</option>
+              </select>
+          </div>
+          {/* <div className="form-group">
+              <label htmlFor="trainer">Trainer</label>
+              <select className="form-control" value={trainers}
+            onChange={(e) => setTrainer(e.target.value)} id="userType">
+                  <option value="#">Select Trainer</option>
+                  <option value="Trainer">Trainer1</option>
+                  <option value="Trainer">Trainer2</option>
+                  <option value="Trainer">Trainer3</option>
+                  <option value="Trainer">Trainer4</option>
+              </select>
+          </div> */}
+          <div className="modal-footer">
+        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button  type="submit" className="btn btn-primary">Create</button>
+        {error && <div>{error}</div>}
+      </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    </>
+  );
+};
+
+export default Datatable;

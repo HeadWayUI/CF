@@ -43,6 +43,7 @@ import Trainers from './admin/adminpages/trainers/Trainers';
 import Clients from './admin/adminpages/clients/Clients';
 import Adminline from './admin/adminpages/line/Adminline';
 import Trainers1 from './sponsor/sponsorpages/trainers/Trainers';
+import Studentview from './admin/admincomponents/datatable/student/Studentview';
 
 
 function App() {
@@ -71,7 +72,7 @@ function App() {
         <Route path="admin" element={<Homee />} />
         <Route path="learners">
           <Route index element={<List />} />
-          <Route path=":learnersId" element={<Single />} />
+          <Route path=":studentId" element={<Single />} />
           <Route path="new" element={<New inputs={userInputs} title="Add New User" />}/>   
         </Route>
         <Route path="adminlearner">
@@ -84,6 +85,8 @@ function App() {
         <Route path='sponsorlist' element={<Sponsors />} />
         <Route path='trainerslist' element={<Trainers />} />
         <Route path='clientslist' element={<Clients />} />
+        <Route path='sread/:studentId' element={<Studentview />} />
+        
        
 
 

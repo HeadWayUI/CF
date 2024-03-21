@@ -22,7 +22,11 @@ const Login = () => {
       });
       const data = await response.json();
       if (response.ok) {
-        console.log(data)
+         // Store token in localStorage
+         localStorage.setItem('token', data.token);
+            
+         // Log token to console to confirm it's stored
+         console.log('Token stored:', data.token);
         // Login successful
         // Redirect to admin component
         navigate('/sponsoradmin'); 
