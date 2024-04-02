@@ -44,6 +44,7 @@ import Clients from './admin/adminpages/clients/Clients';
 import Adminline from './admin/adminpages/line/Adminline';
 import Trainers1 from './sponsor/sponsorpages/trainers/Trainers';
 import Studentview from './admin/admincomponents/datatable/student/Studentview';
+import AdminQuery from './admin/adminpages/query/AdminQuery';
 
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
   return (
     <div>
       <Routes>
+        {/* pages */}
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
         <Route path='/donate' element={<Donate />} />
@@ -81,10 +83,12 @@ function App() {
         </Route>
         <Route path='pie' element={<Adminpie />} />
         <Route path='linechart' element={<Adminline />} />
+        <Route path='barchart' element={<Adminbar />} />
         <Route path='button' element={<Button />} />
         <Route path='sponsorlist' element={<Sponsors />} />
         <Route path='trainerslist' element={<Trainers />} />
         <Route path='clientslist' element={<Clients />} />
+        <Route path='querylist' element={<AdminQuery />} />
         <Route path='sread/:studentId' element={<Studentview />} />
         
        

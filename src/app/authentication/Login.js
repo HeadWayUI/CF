@@ -1,65 +1,109 @@
 // import './login.css';
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-
-    const [emailAddress, setEmailAddress] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
-    const navigate = useNavigate(); 
-    // const baseUrl = "http://ec2-13-51-102-167.eu-north-1.compute.amazonaws.com:9090/api/authenticate";
+  const [emailAddress, setEmailAddress] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  // const baseUrl = "http://ec2-13-51-102-167.eu-north-1.compute.amazonaws.com:9090/api/authenticate";
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://ec2-13-51-102-167.eu-north-1.compute.amazonaws.com:9090/api/authenticate", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ emailAddress, password }),
-      });
+      const response = await fetch(
+        "http://ec2-13-51-102-167.eu-north-1.compute.amazonaws.com:9090/api/authenticate",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ emailAddress, password }),
+        }
+      );
       const data = await response.json();
       if (response.ok) {
-         // Store token in localStorage
-         localStorage.setItem('token', data.token);
-            
-         // Log token to console to confirm it's stored
-         console.log('Token stored:', data.token);
-        // Login successful
-        // Redirect to admin component
-        navigate('/sponsoradmin'); 
+        // Store token in localStorage
+        localStorage.setItem("token", data.token);
+
+        const token = data.token;
+
+        // Decode token to extract user type
+        const userType = decodeUserTypeFromToken(token);
+
+        console.log("Usertype:", userType);
+        alert(userType);
+
+        // Redirect based on user type
+        if (userType === "ADMIN") {
+          navigate("/admin");
+        } else if (userType === "DONOR") {
+          navigate("/sponsoradmin");
+        } else {
+          // Handle unknown user type
+          setError("Unknown user type");
+        }
       } else {
         // Login failed
-        setError(data.message || 'Login failed');
+        setError(data.message || "Login failed");
       }
     } catch (error) {
-      setError('An error occurred. Please try again later.');
+      setError("An error occurred. Please try again later.");
     }
   };
+  // Function to decode a JWT token and extract the 'sub' value
+  function decodeUserTypeFromToken(token) {
+    // Split the token into its parts (Header, Payload, Signature)
+    const parts = token.split(".");
+    if (parts.length !== 3) {
+      throw new Error(
+        "The provided string does not look like a valid JWT token."
+      );
+    }
 
-    return (
-        <>    
-        <div>
-            <div className ="form-container">
-                <p className ="title">Welcome back</p>
-                <form className ="form" onSubmit={handleLogin}>
-                    <input type="email" value={emailAddress}
-            onChange={(e) => setEmailAddress(e.target.value)} className ="input" placeholder="Email" />
-                    <input type="password" value={password}
-            onChange={(e) => setPassword(e.target.value)} className ="input" placeholder="Password" />
-                    
-                    <p className ="page-link">
-                        <span className ="page-link-label">Forgot Password?</span>
-                    </p><br></br>
-                    <button className ="form-btn">Log in</button>
-                    {error && <div>{error}</div>}
-                </form>
-                <p className ="sign-up-label">
-                    Don't have an account?<span className ="sign-up-link">Sign up</span>
-                </p>
-                {/* <div className ="buttons-container">
+    // Decode the Payload part from Base64Url to JSON
+    const payload = parts[1];
+    const decodedPayload = JSON.parse(
+      atob(payload.replace(/-/g, "+").replace(/_/g, "/"))
+    );
+
+    // Extract the user type
+    return decodedPayload.userType;
+  }
+
+  return (
+    <>
+      <div>
+        <div className="form-container">
+          <p className="title">Welcome back</p>
+          <form className="form" onSubmit={handleLogin}>
+            <input
+              type="email"
+              value={emailAddress}
+              onChange={(e) => setEmailAddress(e.target.value)}
+              className="input"
+              placeholder="Email"
+            />
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="input"
+              placeholder="Password"
+            />
+
+            <p className="page-link">
+              <span className="page-link-label">Forgot Password?</span>
+            </p>
+            <br></br>
+            <button className="form-btn">Log in</button>
+            {error && <div>{error}</div>}
+          </form>
+          <p className="sign-up-label">
+            Don't have an account?<span className="sign-up-link">Sign up</span>
+          </p>
+          {/* <div className ="buttons-container">
                     <div className ="apple-login-button">
                         <svg stroke="currentColor" fill="currentColor" stroke-width="0" className ="apple-icon" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                             <path d="M747.4 535.7c-.4-68.2 30.5-119.6 92.9-157.5-34.9-50-87.7-77.5-157.3-82.8-65.9-5.2-138 38.4-164.4 38.4-27.9 0-91.7-36.6-141.9-36.6C273.1 298.8 163 379.8 163 544.6c0 48.7 8.9 99 26.7 150.8 23.8 68.2 109.6 235.3 199.1 232.6 46.8-1.1 79.9-33.2 140.8-33.2 59.1 0 89.7 33.2 141.9 33.2 90.3-1.3 167.9-153.2 190.5-221.6-121.1-57.1-114.6-167.2-114.6-170.7zm-105.1-305c50.7-60.2 46.1-115 44.6-134.7-44.8 2.6-96.6 30.5-126.1 64.8-32.5 36.8-51.6 82.3-47.5 133.6 48.4 3.7 92.6-21.2 129-63.7z"></path>
@@ -81,10 +125,10 @@ const Login = () => {
                         <span>Log in with Google</span>
                     </div>
                 </div> */}
-            </div>
         </div>
-        </>
-    )
-}
+      </div>
+    </>
+  );
+};
 
-export default Login
+export default Login;

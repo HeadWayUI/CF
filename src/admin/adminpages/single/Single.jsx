@@ -12,35 +12,42 @@ const Single = () => {
   console.log(studentId)
   const [learner , setLearner ] = useState([]);
 
-  // useEffect(() => {
-  //   axios.get(`http://ec2-13-51-102-167.eu-north-1.compute.amazonaws.com:9090/api/student/${id}`)
-  //     .then(res => {
-  //       console.log(res.data);
-  //       setLearner(res.data);
-  //     })
-  //     .catch(err => console.log(err));
-  // }, [id]);
-
   useEffect(() => {
-    // Retrieve token from localStorage
     const token = localStorage.getItem('token');
+    axios.get(`http://ec2-13-51-102-167.eu-north-1.compute.amazonaws.com:9090/api/student/${studentId}`,
     
-    console.log('local' + token)
-  
-    // Make sure token is available
-    if (token) {
-      axios.get(`http://ec2-13-51-102-167.eu-north-1.compute.amazonaws.com:9090/api/student/${studentId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
+    {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          })
       .then(res => {
         console.log(res.data);
         setLearner(res.data);
       })
       .catch(err => console.log(err));
-    }
-  }, [studentId]); // No need to include token in the dependency array as it's read from localStorage
+  }, [studentId]);
+
+  // useEffect(() => {
+  //   // Retrieve token from localStorage
+  //   const token = localStorage.getItem('token');
+    
+  //   console.log('local' + token)
+  
+  //   // Make sure token is available
+  //   if (token) {
+  //     axios.get(`https://ec2-13-51-102-167.eu-north-1.compute.amazonaws.com:9090/api/student/${studentId}`, {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`
+  //       }
+  //     })
+  //     .then(res => {
+        
+  //       setLearner(res.data);
+  //     })
+  //     .catch(err => console.log(err));
+  //   }
+  // }, [studentId]); // No need to include token in the dependency array as it's read from localStorage
   
 
 

@@ -8,7 +8,7 @@ import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import InsertChartIcon from "@mui/icons-material/InsertChart";
 // import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+
 import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSystemDaydreamOutlined";
 import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
@@ -79,10 +79,12 @@ const Sidebar = () => {
             <span>Clients</span>
           </li>
           </Link>
+          <Link to="/querylist" style={{ textDecoration: "none" }}>
           <li>
             <PsychologyOutlinedIcon className="icon" />
-            <span>Advertisement</span>
+            <span>Queries</span>
           </li>
+          </Link>
           {/* <li>
             <SettingsApplicationsIcon className="icon" />
             <span>Settings</span>
@@ -94,10 +96,10 @@ const Sidebar = () => {
             <span>Pie</span>
           </li>
           </Link>
-          <Link to="/linechart" style={{ textDecoration: "none" }}>
+          <Link to="/barchart" style={{ textDecoration: "none" }}>
           <li>
             <AccountCircleOutlinedIcon className="icon" />
-            <span>Line</span>
+            <span>Bar</span>
           </li>
           </Link>
           <p className="title">USER</p>

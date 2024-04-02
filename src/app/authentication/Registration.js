@@ -41,7 +41,7 @@ const Registration = () => {
           const response = await fetch("http://ec2-13-51-102-167.eu-north-1.compute.amazonaws.com:9090/api/register/admin", {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/json',
+              'Content-Type':  'multipart/form-data',
             },
             body: JSON.stringify({
               firstName,

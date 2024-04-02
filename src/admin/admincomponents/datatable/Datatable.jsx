@@ -32,20 +32,31 @@ const Datatable = () => {
   // const handleDelete = (id) => {
   //   setData(data.filter((item) => item.id !== id));
   // };
-  const handleDelete = (studentId) => {
-    // Assuming you have an Axios instance configured and imported as axios
-    axios.delete(`http://ec2-13-51-102-167.eu-north-1.compute.amazonaws.com:9090/api/student/${studentId}`, {
+
+  const handleDelete = (id) => {
+    fetch(`http://ec2-13-51-102-167.eu-north-1.compute.amazonaws.com:9090/api/student/${id}`, {
+      method: 'DELETE',
       // Optionally, you can include headers or any other configuration needed for the request
     })
     .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      // Assuming you want to parse the response JSON
+      return response.json();
+    })
+    .then(data => {
       // Handle success, such as updating the UI or showing a success message
-      console.log('Delete successful:', response);
+      console.log('Delete successful:', data);
+      // Remove the deleted student from the local state (optional)
+      setData(data.filter((item) => item.id !== id));
     })
     .catch(error => {
       // Handle error, such as displaying an error message or logging the error
       console.error('Error deleting student:', error);
     });
   };
+  
   
 
   const actionColumn = [
@@ -60,9 +71,12 @@ const Datatable = () => {
               <div className="viewButton">View</div>
               
             </Link>
-            <div className="deleteButton" onClick={() => handleDelete(params.row.studentId)}>
+            <button>
+            <div className="deleteButton" onClick={() => handleDelete()}>
               Delete
             </div>
+            </button>
+           
 
             <div className="updateButton" onClick={() =>handleDelete(params.row.id)}>
               Update
