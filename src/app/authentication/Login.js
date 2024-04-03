@@ -1,6 +1,6 @@
-// import './login.css';
+import './login.css';
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [emailAddress, setEmailAddress] = useState("");
@@ -26,7 +26,11 @@ const Login = () => {
       if (response.ok) {
         // Store token in localStorage
         localStorage.setItem("token", data.token);
-
+          // Store username in local storage
+        localStorage.setItem('username', data.username);
+        const storedUsername = localStorage.getItem('username');
+        alert(storedUsername)
+        console.log(storedUsername)
         const token = data.token;
 
         // Decode token to extract user type
@@ -72,6 +76,34 @@ const Login = () => {
     return decodedPayload.userType;
   }
 
+  const handleClick = () => {
+    // Construct the URL with the email parameter
+    const url = `http://ec2-13-51-102-167.eu-north-1.compute.amazonaws.com:9090/api/verification/${encodeURIComponent(emailAddress)}`;
+    
+    // Make a GET request to the endpoint
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        // Add any additional headers if required
+      },
+    })
+    .then(response => {
+      if (response.ok) {
+        // Handle successful response
+        console.log('Request sent successfully');
+      } else {
+        // Handle errors
+        console.error('Error:', response.statusText);
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  };
+
+  const isEmailFilled = emailAddress.trim() !== ''; 
+
   return (
     <>
       <div>
@@ -93,15 +125,24 @@ const Login = () => {
               placeholder="Password"
             />
 
+               {/* Conditionally render the "Forgot Password?" link based on whether the email field is filled */}
+          {isEmailFilled ? (
             <p className="page-link">
+              <Link to="/forgottenpassword" onClick={handleClick}>
+                <span className="page-link-label">Forgot Password?</span>
+              </Link>
+            </p>
+          ) : (
+            <p className="page-link disabled">
               <span className="page-link-label">Forgot Password?</span>
             </p>
+          )}
             <br></br>
             <button className="form-btn">Log in</button>
             {error && <div>{error}</div>}
           </form>
           <p className="sign-up-label">
-            Don't have an account?<span className="sign-up-link">Sign up</span>
+            Don't have an account? <Link to ='/signup'><span className="sign-up-link">Sign up</span></Link>
           </p>
           {/* <div className ="buttons-container">
                     <div className ="apple-login-button">

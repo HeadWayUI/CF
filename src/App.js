@@ -45,6 +45,9 @@ import Adminline from './admin/adminpages/line/Adminline';
 import Trainers1 from './sponsor/sponsorpages/trainers/Trainers';
 import Studentview from './admin/admincomponents/datatable/student/Studentview';
 import AdminQuery from './admin/adminpages/query/AdminQuery';
+import Forgottenpassword from './app/authentication/Forgottenpassword';
+import Studentcreate from './admin/admincomponents/datatable/student/Studentcreate';
+import Adminprofile from './admin/adminpages/profile/Adminprofile';
 
 
 function App() {
@@ -69,6 +72,7 @@ function App() {
         <Route path='/allclients' element={<Allclients />} />
         <Route path='/alldonars' element={<Allfunders />} />
         <Route path='/fund' element={<Funds />} />
+        <Route path='/forgottenpassword' element={<Forgottenpassword />} />
         
         {/* admin routes */}
         <Route path="admin" element={<Homee />} />
@@ -90,6 +94,9 @@ function App() {
         <Route path='clientslist' element={<Clients />} />
         <Route path='querylist' element={<AdminQuery />} />
         <Route path='sread/:studentId' element={<Studentview />} />
+        <Route path='screate' element={<Studentcreate />} />
+        <Route path='profile' element={<Adminprofile />} />
+
         
        
 
