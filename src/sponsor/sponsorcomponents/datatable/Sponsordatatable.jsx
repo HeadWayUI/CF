@@ -10,9 +10,6 @@ const Sponsordatatable = () => {
   const [data, setData] = useState([]);
   const baseUrl = "http://ec2-13-51-102-167.eu-north-1.compute.amazonaws.com:9090";
 
-  // const handleDelete = (id) => {
-  //   setData(data.filter((item) => item.id !== id));
-  // };
 
   useEffect(() => {
     // Fetch data from the endpoint
@@ -40,12 +37,6 @@ const Sponsordatatable = () => {
             <Link to={`/learner/${params.row.id}`} style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
             </Link>
-            {/* <div
-              className="deleteButton"
-              onClick={() => handleDelete(params.row.id)}
-            >
-              Delete
-            </div> */}
           </div>
         );
       },

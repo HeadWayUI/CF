@@ -46,11 +46,10 @@ const Heder = () => {
                         <span className="oi oi-menu"></span> Menu
                     </button>
                     <div className="collapse navbar-collapse" id="ftco-nav">
-                    <Link to= "/alldonars">
+                    <Link to= "#">
                     <button type="button" class="btn btn-primary position-relative">
-                        Sponsors
+                        Donate
                         <span class="position-absolute top-0 start-70 translate-middle badge rounded-pill bg-danger">
-                        5
                         </span>
                     </button>
                     </Link>
@@ -60,7 +59,7 @@ const Heder = () => {
                             <li className="nav-item"><Link to="/about" className="nav-link">About</Link></li>
                             <li className="nav-item"><Link to ="/alltechnology" className="nav-link">Technologies</Link></li>
                             <li className="nav-item"><Link to ="/allclients" className="nav-link">Clients</Link></li>
-                            <li className="nav-item"><Link to ="/fund" className="nav-link">Funds</Link></li>
+                            {/* <li className="nav-item"><Link to ="/fund" className="nav-link">Funds</Link></li> */}
                             <li className="nav-item"><Link to ="/gallery" className="nav-link">Gallery</Link></li> 
                             <li className="nav-item"><Link to ="/blog" className="nav-link">Articles</Link></li>               
                             <li className="nav-item"><Link to ="/contact" className="nav-link">Contact</Link></li>

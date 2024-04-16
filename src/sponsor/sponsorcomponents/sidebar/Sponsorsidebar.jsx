@@ -80,12 +80,6 @@ const Sponsorsidebar = () => {
             <span>Pie</span>
           </li>
           </Link>
-          <Link to = "/sponsorbar" style={{ textDecoration: "none" }}>
-          <li>
-            <AccountCircleOutlinedIcon className="icon" />
-            <span>Bar</span>
-          </li>
-          </Link>
           <p className="title">USER</p>
           <li>
             <AccountCircleOutlinedIcon className="icon" />

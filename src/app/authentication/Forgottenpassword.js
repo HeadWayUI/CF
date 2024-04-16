@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Footer from '../shared/Footer';
-
+import { useNavigate } from 'react-router-dom';
 const Forgottenpassword = () => {
   const [formData, setFormData] = useState({
     email: '',
@@ -8,6 +8,7 @@ const Forgottenpassword = () => {
     newPassword: '',
     confirmPassword: ''
   });
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -25,6 +26,7 @@ const Forgottenpassword = () => {
     .then(response => {
       if (response.ok) {
         console.log('Password reset successfully.');
+        navigate('/login');
         // Optionally, redirect or show a success message
       } else {
         console.error('Password reset failed.');

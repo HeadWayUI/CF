@@ -70,14 +70,7 @@ const Home = () => {
     useEffect(() => {
         const fetchTechnologies = async () => {
             try {
-                const response = await fetch(baseUrl + '/api/technologies/all', {
-                    method: 'GET', // Method is optional if you're performing a simple GET request
-                    headers: {
-                        'Content-Type': '*/*'
-                        // Add any other headers here
-                        // 'Authorization': 'Bearer your_token_here',
-                    },
-                });
+                const response = await fetch(baseUrl + "/api/technologies/all");
                 if (!response.ok) {
                     throw new Error('Failed to fetch data');
                 }
